@@ -1,6 +1,6 @@
 # Interactive Frontend Development Project
 
-## Milestone Project 2:UFO
+## Milestone Project 2: UFO
 
 
 ## UX
@@ -36,7 +36,7 @@ The website was developed using Cloud9 IDE, it was then committed to git and pus
 To deploy this page to GitHub Pages from its GitHub repository, the following steps were taken:
 
 - Log into GitHub.
-- Select the repository **Squelsh84/milestone-project-2**.
+- Select the repository **Squelsh84/milestone-UFO**.
 - At the top of the page, select **Settings**.
 - Scroll down to the GitHub Pages section.
 - Under Source, select **Master Branch**
