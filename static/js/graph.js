@@ -1,19 +1,29 @@
 queue()
-    .defer(d3.json, "data/scrubbed.json")
+    .defer(d3.csv, "data/scrub.csv")
     .await(makeGraphs);
 
-function makeGraphs(error, scrubbedData) {
-    var ndx = crossfilter(scrubbedData);
+function makeGraphs(error, scrubData) {
+    var ndx = crossfilter(scrubData);
+
+    //show_region_selector(ndx);
 
     show_country_sighting(ndx);
 
     show_shape_of_ufo(ndx);
 
-    show_ufo_year(ndx);
+    //show_ufo_year(ndx);
 
     dc.renderAll();
 }
 
+function show_region_selector(ndx) {
+    var dim = ndx.dimension(dc.pluck('datetime'));
+    var group = dim.group();
+
+    dc.selectMenu("#region-selector")
+        .dimension(dim)
+        .group(group)
+}
 
 function show_country_sighting(ndx) {
   var dim =    ndx.dimension(dc.pluck('country'));
@@ -55,8 +65,8 @@ function show_shape_of_ufo(ndx) {
   }
 
 
-  function show_ufo_year(ndx) {
-    var dim = ndx.dimension(dc.pluck('datetime'));
+    /*function show_ufo_year(ndx) {
+    var dim = ndx.dimension(dc.pluck('country'));
     var group = dim.group();
 
     dc.barChart("#year")
@@ -71,11 +81,11 @@ function show_shape_of_ufo(ndx) {
         .elasticY(true)
         .xAxisLabel("Year")
         .yAxisLabel("Total")
-        .yAxis().ticks(8);
+        .yAxis().ticks(5);
 
 }
 
-
+*/
 
 
 /*.function to refresh page when Refresh Charts buttons are clicked */
