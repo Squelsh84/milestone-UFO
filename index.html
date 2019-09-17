@@ -32,24 +32,60 @@
     </div>
   </nav>
 
-  <!-- Pie charts and Bar Chart -->
-  <section class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-lg-4 col-md-4 col-sm-12 text-center">
-        <h2>COUNTRY OF SIGHTING</h2>
-        <div id="country"></div>
-      </div>
-      <div class="col-xs-12 col-lg-4 col-md-4 col-sm-12 text-center">
-        <h2>Shape of UFO</h2>
-        <div id="shape"></div>
-      </div>
-      <div class="col-xs-12 col-lg-4 col-md-4 col-sm-12 text-center">
-        <h2>Year of UFO</h2>
-        <div id="year"></div>
+  <!-- Datatable -->
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <h4>
+          Table showing Countries in desending order of position on the Report
+        </h4>
+        <table id="dc-data-table" class="table table-bordered">
+          <thead>
+            <tr class="header">
+              <th>datetime</th>
+              <th>city</th>
+              <th>country</th>
+              <th>shape</th>
+              <th>comments</th>
+            </tr>
+          </thead>
+        </table>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div id="paging">
+              Showing <span id="begin"></span>-<span id="end"></span> of
+              <span id="size"></span> <span id="totalsize"></span>
+              <input id="prev" class="btn-primary active" type="button" value="Prev" />
+              <input id="next" class="btn-primary active" type="button" value="Next" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Pie charts and Bar Chart -->
+  <section class="container-fluid">
+    <div class="row ufo-chart">
+      <div class="col-xs-12 col-lg-6 col-md-6 col-sm-12 text-center">
+        <h2>COUNTRY OF SIGHTING</h2>
+        <div id="country"></div>
+      </div>
+      <div class="col-xs-12 col-lg-6 col-md-6 col-sm-12 text-center">
+        <h2>Shape of UFO</h2>
+        <div id="shape"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="container">
+    <div class="country-chart text-center">
+      <h2>Year of UFO</h2>
+      <div id="year"></div>
+    </div>
+  </section>
 
   <!-- Composite Chart -->
   <section class="section">
@@ -61,6 +97,19 @@
             countries:
           </h3>
           <div id="composite-chart"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Stacked Barchart-->
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="text-center">
+          <h3>Barchart of Country and types of UFO sighted</h3>
+          <div id="stacked-chart"></div>
         </div>
       </div>
     </div>
@@ -78,8 +127,6 @@
 
 
 
-
-  
 </body>
 
 </html>
