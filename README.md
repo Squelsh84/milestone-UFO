@@ -1,6 +1,8 @@
 # Interactive Frontend Development Project
 
-## Milestone Project 2: UFO
+## Milestone Project 2: UFO Sightings Around The World
+This data dashboard is designed to show the UFO sightings reported around the globe from 1949 to 2013. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country it was spotted we can also see the shape of the UFO that was reported. 
+
 
 
 ## UX
@@ -10,7 +12,11 @@
 ## Features
 
 ## Technologies used
-•	HTML, CSS, and JavaScript.
+•	HTML 
+
+•	CSS 
+
+• [JavaScript] The dashboard uses Javascript to provide dynamic interactivity, as it is a full-fledged versatile programming language.
 
 •	[Visual Code Studio](https://code.visualstudio.com/) 
 
@@ -20,11 +26,16 @@
 
 •	[JQuery](https://jquery.com/) to simplify the JavaScript.
 
+•	[Crossfilter] The graphs and charts on the dashboard are all linked using crossfilter, which manages the data behind the graphs and charts, allowing interaction with coordinated views and functioning. It synchronises all the charts when used.
+
+•	[DC.js]() The dashboard uses DC.js for data visualisation and analysis. 
+
+•	[D3.js] The D3.js library allows manipulation of elements on the dashboard in the context of the dataset.
 •	Google Chrome developer tools.
 
 •	Bash / Ubuntu to commit my project and to push it to Github.
 
-•	[Github](https://github.com/) for version control and for users to view the deployed version of the website.
+•	[Git](https://github.com/) for version control and for users to view the deployed version of the website.
 
 ## Testing
 
@@ -47,7 +58,7 @@ To deploy this page to GitHub Pages from its GitHub repository, the following st
 ### How to run this project locally
 If you wish to clone this project from GitHub:
 
-- Click on this [link](https://github.com/Squelsh84/milestone-project-2) to the GitHub repository.
+- Click on this [link](https://github.com/Squelsh84/milestone-UFO) to the GitHub repository.
 - There is a green button saying "Clone or download" on the right-hand side, click on this.
 - Next copy the clone URL for the repository that is provided.
 - Open Git Bash in your local IDE.
