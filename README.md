@@ -1,6 +1,5 @@
-# Interactive Frontend Development Project
-
-## Milestone Project 2: UFO Sightings Around The World
+# Milestone Project 2: UFO Sightings Around The World
+Please click [here for a live demo of the website.](https://squelsh84.github.io/milestone-UFO/).
 This data dashboard is designed to show the UFO sightings reported around the globe from 1949 to 2013. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country it was spotted we can also see the shape of the UFO that was reported. 
 
 
@@ -10,6 +9,39 @@ This data dashboard is designed to show the UFO sightings reported around the gl
 ### What is it?
 
 ## Features
+### Existing features
+
+##### Navbar
+* Navbar contains the name of the dashboard and a Refresh Chart button. I added it to the top of the page
+
+
+##### 
+* 
+
+##### 
+* 
+
+#####  pie chart
+* 
+
+#####  pie chart
+*
+
+##### Stacked bar chart
+* 
+##### Composite Chart
+* 
+
+##### Table Data table
+* 
+
+##### Prev & Next buttons 
+* 
+
+### Features Left to Implement
+
+
+
 
 ## Technologies used
 •	HTML 
@@ -26,11 +58,12 @@ This data dashboard is designed to show the UFO sightings reported around the gl
 
 •	[JQuery](https://jquery.com/) to simplify the JavaScript.
 
-•	[Crossfilter] The graphs and charts on the dashboard are all linked using crossfilter, which manages the data behind the graphs and charts, allowing interaction with coordinated views and functioning. It synchronises all the charts when used.
+•	Crossfilter The graphs and charts on the dashboard are all linked using crossfilter, which manages the data behind the graphs and     charts, allowing interaction with coordinated views and functioning. It synchronises all the charts when used.
 
-•	[DC.js]() The dashboard uses DC.js for data visualisation and analysis. 
+•	DC.js The dashboard uses DC.js for data visualisation and analysis. 
 
-•	[D3.js] The D3.js library allows manipulation of elements on the dashboard in the context of the dataset.
+•	D3.js The D3.js library allows manipulation of elements on the dashboard in the context of the dataset.
+
 •	Google Chrome developer tools.
 
 •	Bash / Ubuntu to commit my project and to push it to Github.
