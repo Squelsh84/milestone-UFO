@@ -25,7 +25,10 @@ function makeGraphs(error, scrubData) {
     dc.renderAll();
 }
 
-
+// Modal
+$(document).ready(function(){
+    $('.modal').modal('show');
+  });
 
 // DataTable
 
@@ -148,7 +151,7 @@ function show_shape_of_ufo(ndx) {
         .radius(150)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
-        .legend(dc.legend().x(0).y(0).itemHeight(16).gap(2));
+        .legend(dc.legend().x(0).y(0).itemHeight(8.5).gap(1));
 
 
 
@@ -158,6 +161,9 @@ function show_shape_of_ufo(ndx) {
 function show_ufo_year(ndx) {
     var dim = ndx.dimension(dc.pluck('country'));
     var group = dim.group();
+    var rankColors = d3.scale.ordinal()
+        .domain(["Australia", "Canada", "Europe", "Great Britain", "New Zealand","Rest of World","Russia","United States", , "Unknown"])
+        .range(["#ff7f0e", " #aec7e8", " #fdae6b", "#e6550d","#ffbb78", "#9ecae1", "#31a354", "#3182bd", "#6baed6"]);
 
     dc.barChart("#year")
         .width(800)
@@ -169,6 +175,10 @@ function show_ufo_year(ndx) {
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .elasticY(true)
+        .colorAccessor(function(d) {
+            return d.key[0];
+        })
+        .colors(rankColors)
         .xAxisLabel("Year")
         .yAxisLabel("Total")
         .yAxis().ticks(8);
@@ -321,7 +331,7 @@ function show_stacked_country(ndx) {
     .xUnits(dc.units.ordinal)
     .xAxisLabel("Country")
     .yAxisLabel("Shape")
-    .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5));
+    .legend(dc.legend().x(420).y(0).itemHeight(10).gap(2));
     
 }
 
@@ -333,6 +343,7 @@ function show_stacked_country(ndx) {
 function show_ufo_shape(ndx) {
     var dim = ndx.dimension(dc.pluck('shape'));
     var group = dim.group();
+    
 
     dc.barChart("#shape-barchart")
         .width(1200)
