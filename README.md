@@ -1,21 +1,31 @@
 # Milestone Project 2: UFO Sightings Around The World
+
 Please click [here for a live demo of the website.](https://squelsh84.github.io/milestone-UFO/).
+
+! [Responsive Dashboard](https://github.com/Squelsh84/milestone-UFO/blob/master/static/images/responsive.png)
+
+## Introduction
 This data dashboard is designed to show the UFO sightings reported around the globe from 1949 to 2013. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country the UFO was spotted in, we can also see the shape of the UFO that was reported. 
 
 
 
 ## UX
 
+### What is it?
+It's a Single Page Application (SPA) dashboard that informs the users of ufo sightings around the globe using various charts, pie-charts, composite charts and stacked barcharts. 
+
+
+### Who is the target audience?
 This Dashboard is for people who are curious about all the extraterrestrial activities that have happened around the globe. Whether you're skeptical about it or a true believer in UFO's it's always something that draws up conversation amongst people. 
 
 
-### What is it?
 
 ## Features
+
 ### Existing features
 
 ##### Navbar
-* Navbar contains the name of the dashboard and a Refresh Chart button. I added it to the top of the page
+* Navbar contains the name of the dashboard and a logo beside it to that brings back to the top of the page. its also fixed to the top so you can alway move back up. Also I added a refresh chart button to the top incase people want to start again.
 
 
 ##### 
