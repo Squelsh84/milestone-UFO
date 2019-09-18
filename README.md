@@ -1,10 +1,13 @@
 # Milestone Project 2: UFO Sightings Around The World
 Please click [here for a live demo of the website.](https://squelsh84.github.io/milestone-UFO/).
-This data dashboard is designed to show the UFO sightings reported around the globe from 1949 to 2013. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country it was spotted we can also see the shape of the UFO that was reported. 
+This data dashboard is designed to show the UFO sightings reported around the globe from 1949 to 2013. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country the UFO was spotted in, we can also see the shape of the UFO that was reported. 
 
 
 
 ## UX
+
+This Dashboard is for people who are curious about all the extraterrestrial activities that have happened around the globe. Whether you're skeptical about it or a true believer in UFO's it's always something that draws up conversation amongst people. 
+
 
 ### What is it?
 
@@ -103,3 +106,17 @@ git clone https://github.com/USERNAME/REPOSITORY
 - Press Enter to create your local clone.
 
 ## Credits
+
+### Content
+
+* UFO data from Kaggle: https://www.kaggle.com/camnugent/ufo-sightings-around-the-world
+* 
+
+### Media
+
+* Favicon taken from flaticon: https://www.flaticon.com/free-icon/ufo_214358#term=ufo&page=1&position=2.
+* Responsiveness and device images image from http://ami.responsivedesign.is/ 
+
+### Acknowledgements
+
+* Chart documentation: https://dc-js.github.io/dc.js/examples/
