@@ -3,9 +3,16 @@ queue()
     .await(makeGraphs);
 
 function makeGraphs(error, scrubData) {
+   
     var ndx = crossfilter(scrubData);
 
+     show_ufo_shape(ndx);
+
     //show_region_selector(ndx);
+
+    //show_data_table(ndx);
+
+    //show_stacked_country(ndx);
 
     show_country_sighting(ndx);
 
@@ -18,6 +25,83 @@ function makeGraphs(error, scrubData) {
     dc.renderAll();
 }
 
+
+
+// DataTable
+
+function show_data_table(ndx) {
+
+    var dim = ndx.dimension(function(d) { return d.dim; });
+    var table = dc.dataTable("#dc-data-table")
+    
+           .dimension(dim)
+           .group(function(d) { return ""; })
+           .size(Infinity)
+
+        .columns([
+            function (d) { return d.datetime; },
+            function (d) { return d.city; },
+            function (d) { return d.country; },
+            function (d) { return d.shape; },
+            function (d) { return d.comments; },
+        ]).sortBy(function(d) {
+            return d.datetime; 
+        })
+        .order(d3.ascending)
+
+        .on('preRender', update_offset)
+        .on('preRedraw', update_offset)
+        .on('pretransition', display);
+        
+            var ofs = 0, pag = 10;
+
+    function update_offset() {
+        var totFilteredRecs = ndx.groupAll().value();
+        var end = ofs + pag > totFilteredRecs ? totFilteredRecs : ofs + pag;
+        ofs = ofs >= totFilteredRecs ? Math.floor((totFilteredRecs - 1) / pag) * pag : ofs;
+        ofs = ofs < 0 ? 0 : ofs;
+        table.beginSlice(ofs); 
+        table.endSlice(ofs + pag);
+        
+}
+
+function display() {
+        var totFilteredRecs = ndx.groupAll().value();
+        var end = ofs + pag > totFilteredRecs ? totFilteredRecs : ofs + pag;
+        d3.select('#begin')
+            .text(end === 0 ? ofs : ofs + 1);
+        d3.select('#end')
+            .text(end);
+        d3.select('#last')
+            .attr('disabled', ofs - pag < 0 ? 'true' : null);
+        d3.select('#next')
+            .attr('disabled', ofs + pag >= totFilteredRecs ? 'true' : null);
+        d3.select('#size').text(totFilteredRecs);
+        if (totFilteredRecs != ndx.size()) {
+            d3.select('#totalsize').text("(filtered Total: " + ndx.size() + " )");
+        }
+        else {
+            d3.select('#totalsize').text('');
+        }
+    }
+
+    $('#next').on('click', function() {
+        ofs += pag;
+        update_offset();
+        table.redraw();
+    });
+    /* Event Listener function that fires when "next" HTML btn is clicked */  
+
+
+    $('#prev').on('click', function() {
+        ofs -= pag;
+        update_offset();
+        table.redraw();
+    });
+
+}
+
+
 function show_region_selector(ndx) {
     var dim = ndx.dimension(dc.pluck('datetime'));
     var group = dim.group();
@@ -26,6 +110,9 @@ function show_region_selector(ndx) {
         .dimension(dim)
         .group(group)
 }
+
+
+//Country of Sighting and Amount.
 
 function show_country_sighting(ndx) {
     var dim = ndx.dimension(dc.pluck('country'));
@@ -37,15 +124,15 @@ function show_country_sighting(ndx) {
         .group(group)
         .height(300)
         .width(650)
+        .innerRadius(10)
         .radius(150)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
         .legend(dc.legend().x(0).y(0).itemHeight(16).gap(2));
 
-
-
 }
 
+// UFO Shape
 
 function show_shape_of_ufo(ndx) {
     var dim = ndx.dimension(dc.pluck('shape'));
@@ -57,6 +144,7 @@ function show_shape_of_ufo(ndx) {
         .group(group)
         .height(300)
         .width(650)
+        .innerRadius(10)
         .radius(150)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
@@ -83,11 +171,9 @@ function show_ufo_year(ndx) {
         .elasticY(true)
         .xAxisLabel("Year")
         .yAxisLabel("Total")
-        .yAxis().ticks(5);
+        .yAxis().ticks(8);
 
 }
-
-
 
 // Composite Chart
 function show_country_year(ndx) {
@@ -176,6 +262,101 @@ function show_country_year(ndx) {
 
     compositeChart.xAxis().tickFormat(function (v) { return v; });
 }
+
+// Stacked Barchart of Country and Types of UFO.
+
+
+function show_stacked_country(ndx) {
+
+    function typeByShape(dimension, shape) {
+        return dimension.group().reduce(
+            function(p, v) {
+                p.total++;
+                if (v.Type == type) {
+                    p.match++;
+                }
+                return p;
+            },
+            function(p, v) {
+                p.total--;
+                if (v.Type == type) {
+                    p.match--;
+                }
+                return p;
+            },
+            function() {
+                return { total: 0, match: 0 };
+            }
+        );
+    }
+
+    var dim = ndx.dimension(dc.pluck('country'));
+    var lightBySight = typeByShape(dim, "Light" );
+    var triangleBySight = typeByShape(dim,"triangle")
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    dc.barChart("#stacked-chart")
+    .width(500)
+    .height(500)
+    .useViewBoxResizing(true)
+    .dimension(dim)
+    .group(lightBySight, "light")
+    .stack(triangleBySight, "triangle")
+
+    .x(d3.scale.ordinal())
+    .xUnits(dc.units.ordinal)
+    .xAxisLabel("Country")
+    .yAxisLabel("Shape")
+    .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5));
+    
+}
+
+
+
+
+/* shape of ufo barchart*/
+
+function show_ufo_shape(ndx) {
+    var dim = ndx.dimension(dc.pluck('shape'));
+    var group = dim.group();
+
+    dc.barChart("#shape-barchart")
+        .width(1200)
+        .height(400)
+        .margins({ top: 10, right: 50, bottom: 40, left: 50 })
+        .dimension(dim)
+        .group(group)
+        .transitionDuration(500)
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .elasticY(true)
+        .xAxisLabel("Year")
+        .yAxisLabel("Total")
+        .yAxis().ticks(10);
+
+}
+
+
+
+
+
+
+
+
 
 
 
