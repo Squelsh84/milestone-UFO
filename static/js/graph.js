@@ -25,10 +25,6 @@ function makeGraphs(error, scrubData) {
     dc.renderAll();
 }
 
-// Modal
-$(document).ready(function(){
-    $('.modal').modal('show');
-  });
 
 // DataTable
 
@@ -103,8 +99,7 @@ function display() {
     });
 
 }
-
-
+// Dropdown selector
 function show_region_selector(ndx) {
     var dim = ndx.dimension(dc.pluck('datetime'));
     var group = dim.group();
@@ -126,7 +121,7 @@ function show_country_sighting(ndx) {
         .dimension(dim)
         .group(group)
         .height(300)
-        .width(650)
+        .width(600)
         .innerRadius(10)
         .radius(150)
         .useViewBoxResizing(false)
@@ -146,7 +141,7 @@ function show_shape_of_ufo(ndx) {
         .dimension(dim)
         .group(group)
         .height(300)
-        .width(650)
+        .width(600)
         .innerRadius(10)
         .radius(150)
         .useViewBoxResizing(false)
@@ -157,9 +152,9 @@ function show_shape_of_ufo(ndx) {
 
 }
 
-
+// Dateposted Barchart
 function show_ufo_year(ndx) {
-    var dim = ndx.dimension(dc.pluck('country'));
+    var dim = ndx.dimension(dc.pluck('dateposted'));
     var group = dim.group();
     var rankColors = d3.scale.ordinal()
         .domain(["Australia", "Canada", "Europe", "Great Britain", "New Zealand","Rest of World","Russia","United States", , "Unknown"])
@@ -179,7 +174,7 @@ function show_ufo_year(ndx) {
             return d.key[0];
         })
         .colors(rankColors)
-        .xAxisLabel("Year")
+        .xAxisLabel("Dateposted")
         .yAxisLabel("Total")
         .yAxis().ticks(8);
 
@@ -189,9 +184,9 @@ function show_ufo_year(ndx) {
 function show_country_year(ndx) {
     var date_dim = ndx.dimension(dc.pluck('country'));
 
-    function sightings_by_country(datetime) {
+    function sightings_by_country(dateposted) {
         return function (d) {
-            if (d.datetime === datetime) {
+            if (d.date === dateposted) {
                 return +d.Number;
             }
             else {
@@ -273,8 +268,8 @@ function show_country_year(ndx) {
     compositeChart.xAxis().tickFormat(function (v) { return v; });
 }
 
-// Stacked Barchart of Country and Types of UFO.
 
+// Stacked Barchart of Country and Types of UFO.
 
 function show_stacked_country(ndx) {
 
@@ -305,18 +300,6 @@ function show_stacked_country(ndx) {
     var triangleBySight = typeByShape(dim,"triangle")
 
     
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     dc.barChart("#stacked-chart")
@@ -362,12 +345,16 @@ function show_ufo_shape(ndx) {
 }
 
 
+// Map
 
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
-
-
-
-
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/#map=2/36.2/-42.0/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	maxZoom: 18,
+	id: 'mapbox.streets',
+	accessToken: 'your.mapbox.access.token'
+}).addTo(mymap);
 
 
 

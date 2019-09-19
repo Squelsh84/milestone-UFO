@@ -14,3 +14,10 @@
   position: relative;
   height: 50vh;
 }
+
+.pie {
+ background-color: lightgray;
+
+}
+
+#mapid { height: 180px; }
