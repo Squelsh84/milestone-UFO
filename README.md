@@ -27,32 +27,26 @@ This Dashboard is for people who are curious about all the extraterrestrial acti
 ##### Navbar
 * Navbar contains the name of the dashboard and a logo beside it to that brings back to the top of the page. its also fixed to the top so you can alway move back up. Also I added a refresh chart button to the top incase people want to start again.
 
-
-##### 
-* 
-
-##### 
-* 
+#####  pie chart
+* This pie chart displays the countries of sightings.
 
 #####  pie chart
-* 
-
-#####  pie chart
-*
+* This pie chart displays the shape of the UFO spotted.
 
 ##### Stacked bar chart
 * 
 ##### Composite Chart
-* 
+* The composite chart displays the number of sighting along a timeline. It gives a great visual display to what years more have been spotted and where there has been the most activity.
 
-##### Table Data table
-* 
+
 
 ##### Prev & Next buttons 
 * 
 
 ### Features Left to Implement
 
+#### Map
+* I hope to have a map showing the points of all the sightings across the years.
 
 
 
