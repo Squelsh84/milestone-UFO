@@ -1,18 +1,22 @@
 queue()
-    .defer(d3.csv, "data/scrub.csv")
+    .defer(d3.csv, "data/scrubs.csv")
     .await(makeGraphs);
 
 function makeGraphs(error, scrubData) {
-   
+   scrubData.forEach(function (d) {
+     d.dateposted = new Date(d.dateposted);
+     d.number = +d.number;
+   })
+
     var ndx = crossfilter(scrubData);
 
-     show_ufo_shape(ndx);
+    show_ufo_shape(ndx);
 
     //show_region_selector(ndx);
 
-    //show_data_table(ndx);
+    show_data_table(ndx);
 
-    //show_stacked_country(ndx);
+   show_stacked_country(ndx);
 
     show_country_sighting(ndx);
 
@@ -26,45 +30,51 @@ function makeGraphs(error, scrubData) {
 }
 
 
+var map = L.map('map').setView([0, 0], 2);
+
+    L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
+        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+    }).addTo(map);
+
+
 // DataTable
 
 function show_data_table(ndx) {
 
     var dim = ndx.dimension(function(d) { return d.dim; });
     var table = dc.dataTable("#dc-data-table")
-    
-           .dimension(dim)
-           .group(function(d) { return ""; })
-           .size(Infinity)
+
+        .dimension(dim)
+        .group(function(d) { return ""; })
+        .size(Infinity)
 
         .columns([
             function (d) { return d.datetime; },
             function (d) { return d.city; },
             function (d) { return d.country; },
             function (d) { return d.shape; },
-            function (d) { return d.comments; },
+            function (d) { return d.comments; }
         ]).sortBy(function(d) {
-            return d.datetime; 
+            return d.country;
         })
         .order(d3.ascending)
 
         .on('preRender', update_offset)
         .on('preRedraw', update_offset)
         .on('pretransition', display);
-        
-            var ofs = 0, pag = 10;
+
+    var ofs = 0, pag = 10;
 
     function update_offset() {
         var totFilteredRecs = ndx.groupAll().value();
         var end = ofs + pag > totFilteredRecs ? totFilteredRecs : ofs + pag;
         ofs = ofs >= totFilteredRecs ? Math.floor((totFilteredRecs - 1) / pag) * pag : ofs;
         ofs = ofs < 0 ? 0 : ofs;
-        table.beginSlice(ofs); 
+        table.beginSlice(ofs);
         table.endSlice(ofs + pag);
-        
-}
+    }
 
-function display() {
+    function display() {
         var totFilteredRecs = ndx.groupAll().value();
         var end = ofs + pag > totFilteredRecs ? totFilteredRecs : ofs + pag;
         d3.select('#begin')
@@ -89,7 +99,7 @@ function display() {
         update_offset();
         table.redraw();
     });
-    /* Event Listener function that fires when "next" HTML btn is clicked */  
+    /* Event Listener function that fires when "next" HTML btn is clicked */
 
 
     $('#prev').on('click', function() {
@@ -99,7 +109,8 @@ function display() {
     });
 
 }
-// Dropdown selector
+
+// Region selector
 function show_region_selector(ndx) {
     var dim = ndx.dimension(dc.pluck('datetime'));
     var group = dim.group();
@@ -111,7 +122,7 @@ function show_region_selector(ndx) {
 
 
 //Country of Sighting and Amount.
-
+//pie chart
 function show_country_sighting(ndx) {
     var dim = ndx.dimension(dc.pluck('country'));
     var group = dim.group();
@@ -121,8 +132,7 @@ function show_country_sighting(ndx) {
         .dimension(dim)
         .group(group)
         .height(300)
-        .width(600)
-        .innerRadius(10)
+        .width(650)
         .radius(150)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
@@ -131,7 +141,7 @@ function show_country_sighting(ndx) {
 }
 
 // UFO Shape
-
+//pie chart
 function show_shape_of_ufo(ndx) {
     var dim = ndx.dimension(dc.pluck('shape'));
     var group = dim.group();
@@ -141,24 +151,20 @@ function show_shape_of_ufo(ndx) {
         .dimension(dim)
         .group(group)
         .height(300)
-        .width(600)
-        .innerRadius(10)
+        .width(650)
         .radius(150)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
-        .legend(dc.legend().x(0).y(0).itemHeight(8.5).gap(1));
+        .legend(dc.legend().x(0).y(0).itemHeight(16).gap(2));
 
 
 
 }
 
-// Dateposted Barchart
+
 function show_ufo_year(ndx) {
-    var dim = ndx.dimension(dc.pluck('dateposted'));
+    var dim = ndx.dimension(dc.pluck('country'));
     var group = dim.group();
-    var rankColors = d3.scale.ordinal()
-        .domain(["Australia", "Canada", "Europe", "Great Britain", "New Zealand","Rest of World","Russia","United States", , "Unknown"])
-        .range(["#ff7f0e", " #aec7e8", " #fdae6b", "#e6550d","#ffbb78", "#9ecae1", "#31a354", "#3182bd", "#6baed6"]);
 
     dc.barChart("#year")
         .width(800)
@@ -170,28 +176,23 @@ function show_ufo_year(ndx) {
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .elasticY(true)
-        .colorAccessor(function(d) {
-            return d.key[0];
-        })
-        .colors(rankColors)
-        .xAxisLabel("Dateposted")
+        .xAxisLabel("Year")
         .yAxisLabel("Total")
-        .yAxis().ticks(8);
+        .yAxis().ticks(5);
 
 }
-
 // Composite Chart
 function show_country_year(ndx) {
-    var date_dim = ndx.dimension(dc.pluck('country'));
 
-    function sightings_by_country(dateposted) {
+    var date_dim = ndx.dimension(function (d) {
+        return (d.dateposted);
+    });
+    var minDate = date_dim.top(1)[0]['dateposted'];
+    var maxDate = date_dim.bottom(1)[0]['dateposted'];
+
+    function sightings_by_country(country) {
         return function (d) {
-            if (d.date === dateposted) {
-                return +d.Number;
-            }
-            else {
-                return 0;
-            }
+            return  d.country === country ? parseInt(d.number,10) : 0;
         };
     }
     var UnitedStatesSightingByYear = date_dim.group().reduceSum(sightings_by_country('United States'));
@@ -221,11 +222,12 @@ function show_country_year(ndx) {
         .height(500)
         .useViewBoxResizing(true)
         .dimension(date_dim)
-        .x(d3.scale.linear().domain([1949, 2013]))
-        .xAxisLabel("Year")
+        .x(d3.time.scale().domain([new Date(maxDate), new Date(minDate)]))
+        .xAxisLabel("")
         .yAxisLabel("Sightings")
         .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
-        .renderHorizontalGridLines(true)
+        .mouseZoomable(true)
+        .renderLabel(true)
 
         .compose([
             dc.lineChart(compositeChart)
@@ -264,69 +266,14 @@ function show_country_year(ndx) {
         .render();
 
 
-
+    dc.renderAll();
     compositeChart.xAxis().tickFormat(function (v) { return v; });
 }
 
-
-// Stacked Barchart of Country and Types of UFO.
-
-function show_stacked_country(ndx) {
-
-    function typeByShape(dimension, shape) {
-        return dimension.group().reduce(
-            function(p, v) {
-                p.total++;
-                if (v.Type == type) {
-                    p.match++;
-                }
-                return p;
-            },
-            function(p, v) {
-                p.total--;
-                if (v.Type == type) {
-                    p.match--;
-                }
-                return p;
-            },
-            function() {
-                return { total: 0, match: 0 };
-            }
-        );
-    }
-
-    var dim = ndx.dimension(dc.pluck('country'));
-    var lightBySight = typeByShape(dim, "Light" );
-    var triangleBySight = typeByShape(dim,"triangle")
-
-    
-
-
-    dc.barChart("#stacked-chart")
-    .width(500)
-    .height(500)
-    .useViewBoxResizing(true)
-    .dimension(dim)
-    .group(lightBySight, "light")
-    .stack(triangleBySight, "triangle")
-
-    .x(d3.scale.ordinal())
-    .xUnits(dc.units.ordinal)
-    .xAxisLabel("Country")
-    .yAxisLabel("Shape")
-    .legend(dc.legend().x(420).y(0).itemHeight(10).gap(2));
-    
-}
-
-
-
-
-/* shape of ufo barchart*/
-
+//bar chart
 function show_ufo_shape(ndx) {
     var dim = ndx.dimension(dc.pluck('shape'));
     var group = dim.group();
-    
 
     dc.barChart("#shape-barchart")
         .width(1200)
@@ -344,17 +291,65 @@ function show_ufo_shape(ndx) {
 
 }
 
+/*.function to refresh page when Refresh Charts buttons are clicked */
+
+
+function show_stacked_country(ndx) {
+
+    
+
+    function typeByShape(dimension, shape) {
+        return dimension.group().reduce(
+            function(p, v) {
+                p.total++;
+                if (v.shape == shape) {
+                    p.match++;
+                }
+                return p;
+            },
+            function(p, v) {
+                p.total--;
+                if (v.shape == shape) {
+                    p.match--;
+                }
+                return p;
+            },
+            function() {
+                return { total: 0, match: 0 };
+            }
+        );
+    }
+
+    var dim = ndx.dimension(dc.pluck('country'));
+    var lightBySight = typeByShape(dim, "light" );
+    var triangleBySight = typeByShape(dim,"triangle")
+
+
+    dc.barChart("#stacked-chart")
+        .width(500)
+        .height(500)
+        .useViewBoxResizing(true)
+        .dimension(dim)
+        .group(lightBySight, "light")
+        .stack(triangleBySight, "triangle")
+
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Country")
+        .yAxisLabel("Shape")
+        .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5));
+
+}
+
+
 
 // Map
 
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+var map = L.map('map').setView([0, 0], 1);
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/#map=2/36.2/-42.0/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-	maxZoom: 18,
-	id: 'mapbox.streets',
-	accessToken: 'your.mapbox.access.token'
-}).addTo(mymap);
+    L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
+        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+    }).addTo(map);
 
 
 
