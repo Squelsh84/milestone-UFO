@@ -20,4 +20,7 @@
 
 }
 
-#mapid { height: 180px; }
+#map { 
+  height: 300px;
+  width: auto;
+ }
