@@ -46,13 +46,19 @@ var myIcon =L.icon({
     iconAnchor: [25, 16]
 });
 
+function onEachFeature(feature, layer) {
+    layer.bindPopup(feature.properties.city);
+  }
+
 var sightings = L.geoJson (myGeojsonData, {
     pointToLayer: function(feature,latlng){
         return L.marker(latlng, {
             icon: myIcon
         })
-    }
+    },
+    onEachFeature: onEachFeature
 }).addTo(map);
+
 
 
  
