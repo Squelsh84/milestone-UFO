@@ -1,10 +1,10 @@
 queue()
-    .defer(d3.csv, "data/scrubs.csv")
+    .defer(d3.csv, "data/scrub.csv")
     .await(makeGraphs);
 
 function makeGraphs(error, scrubData) {
    scrubData.forEach(function (d) {
-     d.dateposted = new Date(d.dateposted);
+     d.datetime = new Date(d.datetime);
      d.number = +d.number;
    })
 
@@ -16,7 +16,7 @@ function makeGraphs(error, scrubData) {
 
     show_data_table(ndx);
 
-   show_stacked_country(ndx);
+   // show_stacked_country(ndx);
 
     show_country_sighting(ndx);
 
@@ -30,12 +30,25 @@ function makeGraphs(error, scrubData) {
 }
 
 
-var map = L.map('map').setView([0, 0], 2);
+// Map
 
-    L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
-    }).addTo(map);
+var map = L.map('map').setView([0, 0], 2.5);
 
+
+L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
+    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+}).addTo(map);
+
+// Leaflet Icon
+var myIcon =L.icon({
+    iconUrl: 'static/images/space.png',
+    iconSize: [30, 25],
+    iconAnchor: [25, 16]
+});
+
+var myLayer = L.geoJSON().addTo(map);
+myLayer.addData(myGeojsonData);
+ 
 
 // DataTable
 
@@ -55,7 +68,7 @@ function show_data_table(ndx) {
             function (d) { return d.shape; },
             function (d) { return d.comments; }
         ]).sortBy(function(d) {
-            return d.country;
+            return d.datetime;
         })
         .order(d3.ascending)
 
@@ -72,6 +85,7 @@ function show_data_table(ndx) {
         ofs = ofs < 0 ? 0 : ofs;
         table.beginSlice(ofs);
         table.endSlice(ofs + pag);
+
     }
 
     function display() {
@@ -110,7 +124,7 @@ function show_data_table(ndx) {
 
 }
 
-// Region selector
+
 function show_region_selector(ndx) {
     var dim = ndx.dimension(dc.pluck('datetime'));
     var group = dim.group();
@@ -185,10 +199,10 @@ function show_ufo_year(ndx) {
 function show_country_year(ndx) {
 
     var date_dim = ndx.dimension(function (d) {
-        return (d.dateposted);
+        return (d.datetime);
     });
-    var minDate = date_dim.top(1)[0]['dateposted'];
-    var maxDate = date_dim.bottom(1)[0]['dateposted'];
+    var minDate = date_dim.top(1)[0]['datetime'];
+    var maxDate = date_dim.bottom(1)[0]['datetime'];
 
     function sightings_by_country(country) {
         return function (d) {
@@ -223,7 +237,7 @@ function show_country_year(ndx) {
         .useViewBoxResizing(true)
         .dimension(date_dim)
         .x(d3.time.scale().domain([new Date(maxDate), new Date(minDate)]))
-        .xAxisLabel("")
+        .xAxisLabel("Year")
         .yAxisLabel("Sightings")
         .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
         .mouseZoomable(true)
@@ -296,8 +310,6 @@ function show_ufo_shape(ndx) {
 
 function show_stacked_country(ndx) {
 
-    
-
     function typeByShape(dimension, shape) {
         return dimension.group().reduce(
             function(p, v) {
@@ -321,7 +333,7 @@ function show_stacked_country(ndx) {
     }
 
     var dim = ndx.dimension(dc.pluck('country'));
-    var lightBySight = typeByShape(dim, "light" );
+    var lightBySight = typeByShape(dim, "Light" );
     var triangleBySight = typeByShape(dim,"triangle")
 
 
@@ -340,25 +352,6 @@ function show_stacked_country(ndx) {
         .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5));
 
 }
-
-
-
-// Map
-
-var map = L.map('map').setView([0, 0], 1);
-
-    L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
-    }).addTo(map);
-
-
-
-
-
-
-
-
-/*.function to refresh page when Refresh Charts buttons are clicked */
 
 function refreshPage() {
     window.location.reload();
