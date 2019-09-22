@@ -32,7 +32,7 @@ function makeGraphs(error, scrubData) {
 
 // Map
 
-var map = L.map('map').setView([0, 0], 2.5);
+var map = L.map('map').setView([0, 0], 2);
 
 
 L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
@@ -46,8 +46,15 @@ var myIcon =L.icon({
     iconAnchor: [25, 16]
 });
 
-var myLayer = L.geoJSON().addTo(map);
-myLayer.addData(myGeojsonData);
+var sightings = L.geoJson (myGeojsonData, {
+    pointToLayer: function(feature,latlng){
+        return L.marker(latlng, {
+            icon: myIcon
+        })
+    }
+}).addTo(map);
+
+
  
 
 // DataTable
