@@ -14,10 +14,9 @@
   <link rel="stylesheet" href="static/css/main.css" type="text/css" />
   <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="static/css/dc.min.css" type="text/css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
-
-
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
  
 
 
@@ -31,21 +30,17 @@
         <img src="static/images/spaceship.png" width="30" height="30" class="d-inline-block align-top" alt="spaceship icon">
           UFO Sightings Around The World
       </a>
-    <div id="refresh-button">
+    <div class="collapse navbar-collapse" id="refresh-button">
+      <ul class="nav navbar-nav ml-auto">
       <button type="submit" class="btn navbar  btn-warning" onClick="refreshPage()">Refresh Charts</button>
+    </ul>
     </div>
   </nav>
 
 
-  <div class="jumbotron-wood" id="ufo">
-    <div class="container-fluid ">
-      <div class="opaque-overlay"></div>
-    </div>
-  </div>
-
   <!-- Datatable -->
 
-   <section class="section">
+  <section class="section">
     <div class="container">
       <div class="row">
         <h4>
@@ -54,11 +49,11 @@
         <table id="dc-data-table" class="table table-bordered">
           <thead>
             <tr class="header">
-              <th>datetime</th>
-              <th>city</th>
-              <th>country</th>
-              <th>shape</th>
-              <th>comments</th>
+              <th>Date Time</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Shape</th>
+              <th>Comments</th>
             </tr>
           </thead>
         </table>
@@ -115,7 +110,7 @@
   </section>
 
   <!--Stacked Barchart-->
-
+<!--
   <section class="section">
     <div class="container">
       <div class="row">
@@ -126,7 +121,7 @@
       </div>
     </div>
   </section>
-
+-->
 
   <!-- Shape of UFO Barchart -->
 
@@ -140,12 +135,12 @@
   </section>
 
 
-  <h3>Map</h3>
-  <div id="map"></div>
 
 
 
 <!-- Leaflet Map -->
+
+    <div id="map"></div>
 
 
 
@@ -156,10 +151,11 @@
   <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
   <script type="text/javascript" src="static/js/dc.min.js"></script>
   <script type="text/javascript" src="static/js/queue.min.js"></script>
-  
- 
+  <script type="text/javascript" src="data/scrub-geojson.js"></script>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 
   <script type="text/javascript" src="static/js/graph.js"></script>
+  
 </body>
 
 </html>

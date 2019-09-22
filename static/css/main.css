@@ -1,26 +1,25 @@
-.jumbotron-wood {
-  background: url('/static/images/close.jpg') no-repeat bottom right fixed;
-  background-size: cover;
-  opacity: .7;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  position: relative;
-  height: 50vh;
-}
+
 
 .pie {
- background-color: lightgray;
+ background-color:;
 
 }
+
 
 #map { 
   height: 300px;
   width: auto;
+  border: 5px;
  }
+
+ .box {
+  background-image: linear-gradient(to bottom right, #225F79, #0772A1);
+  padding: 0.7em;
+  height: 405px;
+  text-align: center;
+  font-weight: bold;
+  width: 550px;
+  margin: 15px 1em 15px 1em;
+  border-radius: 5px
+}
+
