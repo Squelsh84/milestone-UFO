@@ -12,150 +12,230 @@
 
 
   <link rel="stylesheet" href="static/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="static/css/dc.min.css" type="text/css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-   crossorigin=""/>
- 
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
 
 
 </head>
 
 <body>
-
+  <button id="back-to-top">TOP</button>
+  <button id="refresh-chart" onClick="refreshPage()">Refresh</button>
   <!-- Navbar-->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-      <a class="navbar-brand" href="#">
-        <img src="static/images/spaceship.png" width="30" height="30" class="d-inline-block align-top" alt="spaceship icon">
-          UFO Sightings Around The World
-      </a>
-    <div class="collapse navbar-collapse" id="refresh-button">
-      <ul class="nav navbar-nav ml-auto">
-      <button type="submit" class="btn navbar  btn-warning" onClick="refreshPage()">Refresh Charts</button>
-    </ul>
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>UFO DASHBOARD</h3>
+        <strong>UFO</strong>
+      </div>
+
+      <ul class="list-unstyled components">
+        <li class="active">
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li>
+              <a href="#">Home 1</a>
+            </li>
+            <li>
+              <a href="#">Home 2</a>
+            </li>
+            <li>
+              <a href="#">Home 3</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div class="sidebar-element">
+            <h5>Select Race</h5>
+            <div id="date-selector"></div>
+        </div>
+        <div class="sidebar-element">
+          <h5>Select Race</h5>
+          <div id="country-selector"></div>
+      </div>
+      <div class="sidebar-element">
+        <h5>Select Race</h5>
+        <div id="shape-selector"></div>
     </div>
-  </nav>
+          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="fas fa-copy"></i>
+            Pages
+          </a>
+          <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li>
+              <a href="#">Page 1</a>
+            </li>
+            <li>
+              <a href="#">Page 2</a>
+            </li>
+            <li>
+              <a href="#">Page 3</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-image"></i>
+            Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-question"></i>
+            FAQ
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-paper-plane"></i>
+            Contact
+          </a>
+        </li>
+      </ul>
 
 
-  <!-- Datatable -->
+    </nav>
 
-  <section class="section">
-    <div class="container">
-      <div class="row">
-        <h4>
-          Table showing Countries in desending order of position on the Report
-        </h4>
-        <table id="dc-data-table" class="table table-bordered">
-          <thead>
-            <tr class="header">
-              <th>Date Time</th>
-              <th>City</th>
-              <th>Country</th>
-              <th>Shape</th>
-              <th>Comments</th>
-            </tr>
-          </thead>
-        </table>
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <div id="paging">
-              Showing <span id="begin"></span>-<span id="end"></span> of
-              <span id="size"></span> <span id="totalsize"></span>
-              <input id="prev" class="btn-primary active" type="button" value="Prev" />
-              <input id="next" class="btn-primary active" type="button" value="Next" />
+    <!-- Page Content  -->
+    <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed">
+        <div class="container-fluid">
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+          </button>
+          <button type="button" id="sidebarCollapse" class="btn btn-warning ml-auto" onClick="refreshPage()"> 
+            <span>Refresh Charts</span>
+          </button>
+          
+        </div>
+      </nav>
+
+
+      <section class="section">
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <h3>Barchart of Country and types of UFO sighted</h3>
+              <div id="stacked-chart"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section>
+      <div class="container">
+        <div class="row text-align-center">
+          <h4>
+            Table Showing Countries In Order Of Date:
+          </h4>
+          <table id="dc-data-table" class="table table-hover table-bordered">
+            <thead>
+              <tr class="header">
+                <th>Date Time</th>
+                <th>City</th>
+                <th>Shape</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <div id="paging">
+                Showing <span id="begin"></span>-<span id="end"></span> of
+                <span id="size"></span> <span id="totalsize"></span>
+                <input id="prev" class="btn-primary active" type="button" value="Prev" />
+                <input id="next" class="btn-primary active" type="button" value="Next" />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
-
-  <!-- Pie charts and Bar Chart -->
-  <section class="container-fluid">
-    <div class="row ufo-chart">
-      <div class="pie col-xs-12 col-lg-6 col-md-6 col-sm-12 text-center">
-        <h2>COUNTRY OF SIGHTING</h2>
-        <div id="country"></div>
-      </div>
-      <div class="pie col-xs-12 col-lg-6 col-md-6 col-sm-12 text-center">
-        <h2>Shape of UFO</h2>
-        <div id="shape"></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
 
-  <section class="container">
-    <div class="country-chart text-center">
-      <h2>Year of UFO</h2>
-      <div id="year"></div>
-    </div>
-  </section>
+      <div class="line"></div>
 
-  <!-- Composite Chart -->
-  <section class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h3>
-            Composite Chart showing number of UFO Sightings in various
-            countries:
-          </h3>
-          <div id="composite-chart"></div>
+      <div class="row ufo-chart">
+        <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
+          <h2>Country Of Sightings</h2>
+          <div id="country"></div>
+        </div>
+        <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
+          <h2>Shape Of UFO</h2>
+          <div id="shape"></div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!--Stacked Barchart-->
-<!--
-  <section class="section">
-    <div class="container">
+      <div class="line"></div>
+
+      <div class="container">
+        <div class="country-chart text-center">
+          <h2>Year Of UFO</h2>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h3>
+              Composite Chart Showing Number Of UFO Sightings In Various
+              Countries:
+            </h3>
+            <div id="composite-chart"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
       <div class="row">
         <div class="text-center">
-          <h3>Barchart of Country and types of UFO sighted</h3>
-          <div id="stacked-chart"></div>
+          <h3>Barchart Of States</h3>
+          <div id="state-barchart"></div>
         </div>
       </div>
+
+      <div class="line"></div>
+
+      <div id="map"></div>
     </div>
-  </section>
--->
-
-  <!-- Shape of UFO Barchart -->
-
-  <section class="container">
-    <div class="row">
-      <div class="text-center">
-        <h3>Barchart displaying shape of UFO's</h3>
-        <div id="shape-barchart"></div>
-      </div>
-    </div>
-  </section>
 
 
 
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/d3.min.js"></script>
+    <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
+    <script type="text/javascript" src="static/js/dc.min.js"></script>
+    <script type="text/javascript" src="static/js/queue.min.js"></script>
 
-<!-- Leaflet Map -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
-    <div id="map"></div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="data/scrub-geojson.js"></script>
 
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 
+    <script type="text/javascript" src="static/js/graph.js"></script>
 
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="static/js/d3.min.js"></script>
-  <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
-  <script type="text/javascript" src="static/js/dc.min.js"></script>
-  <script type="text/javascript" src="static/js/queue.min.js"></script>
-  <script type="text/javascript" src="data/scrub-geojson.js"></script>
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
-
-  <script type="text/javascript" src="static/js/graph.js"></script>
-  
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 </body>
 
 </html>
