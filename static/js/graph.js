@@ -3,20 +3,24 @@ queue()
     .await(makeGraphs);
 
 function makeGraphs(error, scrubData) {
-   scrubData.forEach(function (d) {
-     d.datetime = new Date(d.datetime);
-     d.number = +d.number;
-   })
+    scrubData.forEach(function (d) {
+        d.datetime = new Date(d.datetime);
+        d.number = +d.number;
+    })
 
     var ndx = crossfilter(scrubData);
 
     show_ufo_shape(ndx);
 
-    //show_region_selector(ndx);
+    show_date_selector(ndx);
+
+    show_country_selector(ndx);
+
+    show_shape_selector(ndx);
 
     show_data_table(ndx);
 
-   // show_stacked_country(ndx);
+    show_stacked_country(ndx);
 
     show_country_sighting(ndx);
 
@@ -30,57 +34,23 @@ function makeGraphs(error, scrubData) {
 }
 
 
-// Map
-
-var map = L.map('map').setView([0, 0], 2);
-
-
-L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
-    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
-}).addTo(map);
-
-// Leaflet Icon
-var myIcon =L.icon({
-    iconUrl: 'static/images/space.png',
-    iconSize: [30, 25],
-    iconAnchor: [25, 16]
-});
-
-function onEachFeature(feature, layer) {
-    layer.bindPopup(feature.properties.city);
-  }
-
-var sightings = L.geoJson (myGeojsonData, {
-    pointToLayer: function(feature,latlng){
-        return L.marker(latlng, {
-            icon: myIcon
-        })
-    },
-    onEachFeature: onEachFeature
-}).addTo(map);
-
-
-
- 
-
 // DataTable
 
 function show_data_table(ndx) {
 
-    var dim = ndx.dimension(function(d) { return d.dim; });
+    var dim = ndx.dimension(function (d) { return d.dim; });
     var table = dc.dataTable("#dc-data-table")
 
         .dimension(dim)
-        .group(function(d) { return ""; })
+        .group(function (d) { return ""; })
         .size(Infinity)
 
         .columns([
             function (d) { return d.datetime; },
             function (d) { return d.city; },
-            function (d) { return d.country; },
             function (d) { return d.shape; },
             function (d) { return d.comments; }
-        ]).sortBy(function(d) {
+        ]).sortBy(function (d) {
             return d.datetime;
         })
         .order(d3.ascending)
@@ -89,7 +59,7 @@ function show_data_table(ndx) {
         .on('preRedraw', update_offset)
         .on('pretransition', display);
 
-    var ofs = 0, pag = 10;
+    var ofs = 0, pag = 7;
 
     function update_offset() {
         var totFilteredRecs = ndx.groupAll().value();
@@ -121,15 +91,14 @@ function show_data_table(ndx) {
         }
     }
 
-    $('#next').on('click', function() {
+    $('#next').on('click', function () {
         ofs += pag;
         update_offset();
         table.redraw();
     });
     /* Event Listener function that fires when "next" HTML btn is clicked */
 
-
-    $('#prev').on('click', function() {
+    $('#prev').on('click', function () {
         ofs -= pag;
         update_offset();
         table.redraw();
@@ -137,12 +106,34 @@ function show_data_table(ndx) {
 
 }
 
+// Date Selector
 
-function show_region_selector(ndx) {
-    var dim = ndx.dimension(dc.pluck('datetime'));
+function show_date_selector(ndx) {
+    var dim = ndx.dimension(dc.pluck('dateposted'));
     var group = dim.group();
 
-    dc.selectMenu("#region-selector")
+    dc.selectMenu("#date-selector")
+        .dimension(dim)
+        .group(group)
+}
+
+// Country Selector
+function show_country_selector(ndx) {
+    var dim = ndx.dimension(dc.pluck('country'));
+    var group = dim.group();
+
+    dc.selectMenu("#country-selector")
+        .dimension(dim)
+        .group(group)
+}
+
+// Shape Selector
+
+function show_shape_selector(ndx) {
+    var dim = ndx.dimension(dc.pluck('shape'));
+    var group = dim.group();
+
+    dc.selectMenu("#shape-selector")
         .dimension(dim)
         .group(group)
 }
@@ -159,8 +150,8 @@ function show_country_sighting(ndx) {
         .dimension(dim)
         .group(group)
         .height(300)
-        .width(650)
-        .radius(150)
+        .radius(600)
+        .innerRadius(50)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
         .legend(dc.legend().x(0).y(0).itemHeight(16).gap(2));
@@ -178,8 +169,8 @@ function show_shape_of_ufo(ndx) {
         .dimension(dim)
         .group(group)
         .height(300)
-        .width(650)
-        .radius(150)
+        .radius(600)
+        .innerRadius(50)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
         .legend(dc.legend().x(0).y(0).itemHeight(16).gap(2));
@@ -219,7 +210,7 @@ function show_country_year(ndx) {
 
     function sightings_by_country(country) {
         return function (d) {
-            return  d.country === country ? parseInt(d.number,10) : 0;
+            return d.country === country ? parseInt(d.number, 10) : 0;
         };
     }
     var UnitedStatesSightingByYear = date_dim.group().reduceSum(sightings_by_country('United States'));
@@ -230,15 +221,15 @@ function show_country_year(ndx) {
 
     var CanadaSightingByYear = date_dim.group().reduceSum(sightings_by_country('Canada'));
 
-    var RussiaSightingsByYear = date_dim.group().reduceSum(sightings_by_country('Russia'));
+    var BahamasSightingsByYear = date_dim.group().reduceSum(sightings_by_country('Bahamas'));
 
-    var UnknownSightingsByYear = date_dim.group().reduceSum(sightings_by_country('Unknown'));
+    var BrazilSightingsByYear = date_dim.group().reduceSum(sightings_by_country('Brazil'));
 
-    var RestOfTheWorldSightingByYear = date_dim.group().reduceSum(sightings_by_country('Rest of the World'));
+    var MexicoSightingByYear = date_dim.group().reduceSum(sightings_by_country('Mexico'));
 
-    var EuropeSightingByYear = date_dim.group().reduceSum(sightings_by_country('Europe'));
+    var DenmarkSightingByYear = date_dim.group().reduceSum(sightings_by_country('Denmark'));
 
-    var NewZealandSightingByYear = date_dim.group().reduceSum(sightings_by_country('New Zealand'));
+    var HawaiiSightingByYear = date_dim.group().reduceSum(sightings_by_country('Hawaii'));
 
     var TotalSightingByYear = date_dim.group();
 
@@ -250,7 +241,7 @@ function show_country_year(ndx) {
         .useViewBoxResizing(true)
         .dimension(date_dim)
         .x(d3.time.scale().domain([new Date(maxDate), new Date(minDate)]))
-        .xAxisLabel("Year")
+        .xAxisLabel("Date")
         .yAxisLabel("Sightings")
         .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
         .mouseZoomable(true)
@@ -261,31 +252,31 @@ function show_country_year(ndx) {
                 .colors('red')
                 .group(UnitedStatesSightingByYear, 'United States'),
             dc.lineChart(compositeChart)
+                .colors('orange')
+                .group(MexicoSightingByYear, 'Mexico'),
+            dc.lineChart(compositeChart)
                 .colors('green')
                 .group(AustraliaSightingByYear, 'Australia'),
             dc.lineChart(compositeChart)
                 .colors('Violet')
                 .group(CanadaSightingByYear, 'Canada'),
             dc.lineChart(compositeChart)
-                .colors('aqua')
-                .group(EuropeSightingByYear, 'Europe'),
-            dc.lineChart(compositeChart)
-                .colors('gold')
-                .group(NewZealandSightingByYear, 'New Zealand'),
-            dc.lineChart(compositeChart)
                 .colors('aquaMarine')
-                .group(RestOfTheWorldSightingByYear, 'Rest of the World'),
+                .group(DenmarkSightingByYear, 'Denmark'),
             dc.lineChart(compositeChart)
-                .colors('crimson')
-                .group(RussiaSightingsByYear, 'Russia'),
+                .colors('purple')
+                .group(BahamasSightingsByYear, 'Bahamas'),
+                dc.lineChart(compositeChart)
+                .colors('brown')
+                .group(HawaiiSightingByYear, 'Hawaii'),
             dc.lineChart(compositeChart)
-                .colors('khaki')
+                .colors('blue')
                 .group(GreatBritainSightingByYear, 'Great Britain'),
             dc.lineChart(compositeChart)
                 .colors('darkRed')
-                .group(UnknownSightingsByYear, 'Unknown'),
+                .group(BrazilSightingsByYear, 'Brazil'),
             dc.lineChart(compositeChart)
-                .dashStyle([5,])
+                .dashStyle([4,])
                 .colors('pink')
                 .group(TotalSightingByYear, 'Total')
         ])
@@ -299,73 +290,180 @@ function show_country_year(ndx) {
 
 //bar chart
 function show_ufo_shape(ndx) {
-    var dim = ndx.dimension(dc.pluck('shape'));
+    var dim = ndx.dimension(dc.pluck('state'));
     var group = dim.group();
 
-    dc.barChart("#shape-barchart")
-        .width(1200)
-        .height(400)
-        .margins({ top: 10, right: 50, bottom: 40, left: 50 })
-        .dimension(dim)
-        .group(group)
-        .transitionDuration(500)
-        .x(d3.scale.ordinal())
-        .xUnits(dc.units.ordinal)
-        .elasticY(true)
-        .xAxisLabel("Year")
-        .yAxisLabel("Total")
-        .yAxis().ticks(10);
-
+    dc.barChart("#state-barchart")
+    .width(800)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 40, left: 50 })
+    .dimension(dim)
+    .group(group)
+    .transitionDuration(1500)
+    .x(d3.scale.ordinal())
+    .xUnits(dc.units.ordinal)
+    .elasticY(true)
+    .xAxisLabel("State")
+    .yAxisLabel("Total")
+    .yAxis().ticks(5);
 }
 
-/*.function to refresh page when Refresh Charts buttons are clicked */
-
-
+/**
+ * Stacked Barchart with countries and Shape of object 
+*/
 function show_stacked_country(ndx) {
 
     function typeByShape(dimension, shape) {
         return dimension.group().reduce(
-            function(p, v) {
+            function (p, v) {
                 p.total++;
                 if (v.shape == shape) {
                     p.match++;
                 }
                 return p;
             },
-            function(p, v) {
+            function (p, v) {
                 p.total--;
                 if (v.shape == shape) {
                     p.match--;
                 }
                 return p;
             },
-            function() {
+            function () {
                 return { total: 0, match: 0 };
             }
         );
     }
+    var shape_dim = ndx.dimension(dc.pluck('country'));
+    var lightBySight = typeByShape(shape_dim, "Light");
+    var triangleBySight = typeByShape(shape_dim, "Triangle");
+    var unknownBySight = typeByShape(shape_dim, "Unknown");
+    var otherBySight = typeByShape(shape_dim, "Other");
+    var diskBySight = typeByShape(shape_dim, "Disk");
+    var sphereBySight = typeByShape(shape_dim, "Sphere");
+    var circleBySight = typeByShape(shape_dim, "Circle");
+    var fireballBySight = typeByShape(shape_dim, "Fireball");
+    var cigarBySight = typeByShape(shape_dim, "Cigar");
+    var cylinderBySight = typeByShape(shape_dim, "Cylinder");
+    var ovalBySight = typeByShape(shape_dim, "Oval");
+    var eggBySight = typeByShape(shape_dim, "Egg");
+    var formationBySight = typeByShape(shape_dim, "Formation");
+    var rectangleBySight = typeByShape(shape_dim, "Rectangle");
+    var diamondBySight = typeByShape(shape_dim, "Diamond");
 
-    var dim = ndx.dimension(dc.pluck('country'));
-    var lightBySight = typeByShape(dim, "Light" );
-    var triangleBySight = typeByShape(dim,"triangle")
+
 
 
     dc.barChart("#stacked-chart")
         .width(500)
-        .height(500)
+        .height(300)
         .useViewBoxResizing(true)
-        .dimension(dim)
-        .group(lightBySight, "light")
-        .stack(triangleBySight, "triangle")
+        .dimension(shape_dim)
+        .group(lightBySight, "Light")
+        .stack(triangleBySight, "Triangle")
+        .stack(unknownBySight, "Unknown")
+        .stack(otherBySight, "Other")
+        .stack(diskBySight, "Disk")
+        .stack(sphereBySight, "Sphere")
+        .stack(circleBySight, "Cirlce")
+        .stack(fireballBySight, "Fireball")
+        .stack(cigarBySight, "Cigar")
+        .stack(cylinderBySight, "Cylinder")
+        .stack(ovalBySight, "Oval")
+        .stack(eggBySight, "Egg")
+        .stack(formationBySight, "Formation")
+        .stack(rectangleBySight, "Rectangle")
+        .stack(diamondBySight, "Diamond")
+
+        .valueAccessor(function(d) {
+            if (d.value.total > 0) {
+                return (d.value.match); 
+            }
+            else {
+                return 0;
+            }
+        })
 
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Country")
         .yAxisLabel("Shape")
-        .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5));
+        .legend(dc.legend().x(420).y(0).itemHeight(10).gap(5));
 
 }
+
+
+/* function to refresh page when Refresh Charts buttons are clicked */
 
 function refreshPage() {
     window.location.reload();
 }
+
+
+// Sidebar Collapse
+
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+});
+
+
+// Back to top btn
+let btn = $('#back-to-top' );
+
+$(window).scroll(() => {if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', (e) => {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
+
+
+// Leaflet Map
+
+var mapOptions = {
+    center: [40.4168, -3.7038],
+    zoom: 1,
+    minZoom: 2,
+    maxZoom: 18,
+    maxBounds: [
+        [-75, -190],
+        [90, 190]
+    ],
+    maxBoundsViscosity: 0.5,
+};
+
+var map = L.map('map', mapOptions)
+
+
+L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
+    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+}).addTo(map);
+
+// Leaflet Icon
+var myIcon = L.icon({
+    iconUrl: 'static/images/space.png',
+    iconSize: [30, 25],
+    iconAnchor: [25, 16]
+});
+
+function onEachFeature(feature, layer) {
+    layer.bindPopup(feature.properties.city);
+}
+
+var sightings = L.geoJson(myGeojsonData, {
+    pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {
+            icon: myIcon
+        })
+    },
+    onEachFeature: onEachFeature
+}).addTo(map);
+
