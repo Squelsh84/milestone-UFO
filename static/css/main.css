@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6, p, a, span, body  {
  }
 
  .box {
-  background-image: linear-gradient(to bottom right, #225F79, #0772A1);
+  background-image: linear-gradient(to bottom right, #1f787c, #1f787c);
   padding: 0.7em;
   height: 405px;
   text-align: center;
@@ -117,7 +117,7 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #2d4a5a;
+    background: #05386b;
     color: #fff;
     transition: all 0.3s;
 }
@@ -169,7 +169,7 @@ span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #41cd38;
+    background: #379683;      
 }
 
 #sidebar .sidebar-header strong {
@@ -199,7 +199,7 @@ span {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: 	#41cd38;
+    color: 	#8ee4af;
     background: #2d4a5a;
 }
 
@@ -218,7 +218,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #8ee4af;
 }
 
 ul.CTAs {
@@ -233,16 +233,7 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-a.download {
-    background: #fff;
-    color: #7386D5;
-}
 
-a.article,
-a.article:hover {
-    background: #6d7fcc !important;
-    color: #fff !important;
-}
 
 /* ---------------------------------------------------
     CONTENT STYLE
