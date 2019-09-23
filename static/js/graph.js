@@ -10,7 +10,8 @@ function makeGraphs(error, scrubData) {
 
     var ndx = crossfilter(scrubData);
 
-    show_ufo_shape(ndx);
+    
+    show_data_table(ndx);
 
     show_date_selector(ndx);
 
@@ -18,15 +19,13 @@ function makeGraphs(error, scrubData) {
 
     show_shape_selector(ndx);
 
-    show_data_table(ndx);
-
-    show_stacked_country(ndx);
-
     show_country_sighting(ndx);
 
     show_shape_of_ufo(ndx);
 
-    show_ufo_year(ndx);
+    show_ufo_shape(ndx);
+
+    show_stacked_country(ndx);
 
     show_country_year(ndx);
 
@@ -154,7 +153,7 @@ function show_country_sighting(ndx) {
         .innerRadius(50)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
-        .legend(dc.legend().x(80).y(0).itemHeight(16).gap(2));
+        
 
 }
 
@@ -173,32 +172,10 @@ function show_shape_of_ufo(ndx) {
         .innerRadius(50)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
-        .legend(dc.legend().x(80).y(0).itemHeight(16).gap(2));
-
-
-
+        
 }
 
 
-function show_ufo_year(ndx) {
-    var dim = ndx.dimension(dc.pluck('country'));
-    var group = dim.group();
-
-    dc.barChart("#year")
-        .width(800)
-        .height(400)
-        .margins({ top: 10, right: 50, bottom: 40, left: 50 })
-        .dimension(dim)
-        .group(group)
-        .transitionDuration(1500)
-        .x(d3.scale.ordinal())
-        .xUnits(dc.units.ordinal)
-        .elasticY(true)
-        .xAxisLabel("Year")
-        .yAxisLabel("Total")
-        .yAxis().ticks(5);
-
-}
 // Composite Chart
 function show_country_year(ndx) {
 
