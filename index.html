@@ -26,10 +26,11 @@
 <body>
 
   <!--- Button to scroll back up the page --->
-  <button id="back-to-top">TOP</button>
+  <button class="btn-warning" id="back-to-top">TOP</button>
 
-
+  <!--- Button to Refresh Chart --->
   <button id="refresh-chart" onClick="refreshPage()">Refresh</button>
+
   <!-- Navbar-->
   <div class="wrapper">
     <!-- Sidebar  -->
@@ -38,33 +39,6 @@
         <h3>UFO DASHBOARD</h3>
         <strong>UFO</strong>
       </div>
-      <ul class="list-unstyled components">
-        <li class="active">
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-              <i class="fas fa-copy"></i>
-              Pick
-            </a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-              <div class="sidebar-element">
-                <h5>Select Date</h5>
-                <div id="date-selector"></div>
-              </div>
-              <div class="sidebar-element">
-                <h5>Select Country</h5>
-                
-              </div>
-              <div class="sidebar-element">
-                <h5>Select Shape</h5>
-                <div id="shape-selector"></div>
-              </div>
-            </ul>
-        </li>
-        <li>
-         
-        </li>
-      </ul>
-
-
     </nav>
 
     <!-- Page Content  -->
@@ -74,7 +48,7 @@
         <div class="container-fluid">
           <button type="button" id="sidebarCollapse" class="btn btn-info">
             <i class="fas fa-align-left"></i>
-            <span>Toggle Sidebar</span>
+            <span>Sidebar</span>
           </button>
           <button type="button" id="sidebarCollapse" class="btn btn-warning ml-auto" onClick="refreshPage()">
             <span>Refresh Charts</span>
@@ -86,108 +60,155 @@
 
       <div class="row ufo-chart">
         <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
-          <h2>Country Of Sightings</h2>
-          <div id="country-selector"></div>
-          <div id="country"></div>
-        </div>
-        <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
-          <h2>Shape Of UFO</h2>
-          <div id="shape"></div>
-        </div>
-      </div>
-
-      <div class="line"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class=" text-center">
-            <h3 class = "">
-              Composite Chart Showing Number Of UFO Sightings In Various
-              Countries:
-            </h3>
-            <div id="composite-chart"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="line"></div>
-
-      <section class="section">
-        <div class="container">
-          <div class="row">
-            <div class="text-center">
-              <h3>Barchart of Country and types of UFO sighted</h3>
-              <div id="stacked-chart"></div>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Country Of Sightings</h2>
+              <p class="card-info">Click To See More Countries</p>
+              <div id="country-selector"></div>
+            </div>
+            <div class="card-body">
+              <div id="country"></div>
             </div>
           </div>
         </div>
-      </section>
+        <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Shape Of UFO</h2>
+              <p class="card-info">Click To See All The Shapes Reported</p>
+              <div id="shape-selector"></div>
+            </div>
+            <div class="card-body">
+              <div id="shape"></div>
+            </div>
+          </div>
+        </div>
 
-      <div class="line"></div>
-      
-      <section>
+        <div class="line"></div>
+
         <div class="container">
-          <div class="row text-align-center">
-            <h4>
-              Table Showing Countries In Order Of Date:
-            </h4>
-            <table id="dc-data-table" class="table table-hover table-bordered">
-              <thead>
-                <tr class="header">
-                  <th>Date Time</th>
-                  <th>City</th>
-                  <th>Shape</th>
-                  <th>Comments</th>
-                </tr>
-              </thead>
-            </table>
-            <div class="row">
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <div id="paging">
-                  Showing <span id="begin"></span>-<span id="end"></span> of
-                  <span id="size"></span> <span id="totalsize"></span>
-                  <input id="prev" class="btn-primary active" type="button" value="Prev" />
-                  <input id="next" class="btn-primary active" type="button" value="Next" />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h2 class="card-title">Timeline Over A Year of Sightings In All Countries</h2>
+                  <p class="card-info">Click And Scroll On Interactive Chart</p>
+                  <div id="date-selector"></div>
+                </div>
+                <div class="card-body ">
+                  <div id="composite-chart"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
 
-      <div class="line"></div>
-
-     
-      <div id="map"></div>
-
- <!--Footer  -->
- 
-    </div>
-    
+        <div class="line"></div>
 
 
 
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h2 class="card-title"></h2>
+                  <p class="card-info">Each Color Represents The Shape Reported</p>
+                </div>
+                <div class="card-body ">
+                  <div id="stacked-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="static/js/d3.min.js"></script>
-    <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
-    <script type="text/javascript" src="static/js/dc.min.js"></script>
-    <script type="text/javascript" src="static/js/queue.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <div class="line"></div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="data/scrub-geojson.js"></script>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h2 class="card-title">Table Showing Countries In Order Of Date:</h2>
+                  <p class="card-info">Check Out The Comment Section</p>
+                </div>
+                <div class="card-body ">
+                  <table id="dc-data-table" class="table table-hover table-bordered">
+                    <thead>
+                      <tr class="header">
+                        <th>Date Time</th>
+                        <th>City</th>
+                        <th>Shape</th>
+                        <th>Comments</th>
+                      </tr>
+                    </thead>
+                  </table>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <div id="paging">
+                        Showing <span id="begin"></span>-<span id="end"></span> of
+                        <span id="size"></span> <span id="totalsize"></span>
+                        <input id="prev" class="btn-primary active" type="button" value="Prev" />
+                        <input id="next" class="btn-primary active" type="button" value="Next" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 
-    <script type="text/javascript" src="static/js/graph.js"></script>
+        <div class="line"></div>
 
-    <!-- Font Awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h2 class="card-title">World Map Showing All Reports Over the Year</h2>
+                  <p class="card-info">Click A Spaceship To See Where It Was</p>
+                </div>
+                <div class="card-body ">
+                  <div id="map"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script type="text/javascript" src="static/js/d3.min.js"></script>
+      <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
+      <script type="text/javascript" src="static/js/dc.min.js"></script>
+      <script type="text/javascript" src="static/js/queue.min.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+      <script type="text/javascript" src="data/scrub-geojson.js"></script>
+
+      <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+      <script type="text/javascript" src="static/js/graph.js"></script>
+
+      <!-- Font Awesome -->
+      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 </body>
 
 </html>

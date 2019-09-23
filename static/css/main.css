@@ -45,7 +45,6 @@ p {
 
 #back-to-top, #refresh-chart {
     display: flex;
-    background-color: #41cd38;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -307,3 +306,9 @@ ul.CTAs a {
         display: none;
     }
 }
+
+
+
+
+
+

@@ -108,7 +108,7 @@ function show_data_table(ndx) {
 // Date Selector
 
 function show_date_selector(ndx) {
-    var dim = ndx.dimension(dc.pluck('dateposted'));
+    var dim = ndx.dimension(dc.pluck('datetime'));
     var group = dim.group();
 
     dc.selectMenu("#date-selector")
@@ -442,4 +442,6 @@ var sightings = L.geoJson(myGeojsonData, {
     },
     onEachFeature: onEachFeature
 }).addTo(map);
+
+
 
