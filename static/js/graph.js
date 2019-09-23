@@ -154,7 +154,7 @@ function show_country_sighting(ndx) {
         .innerRadius(50)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
-        .legend(dc.legend().x(0).y(0).itemHeight(16).gap(2));
+        .legend(dc.legend().x(80).y(0).itemHeight(16).gap(2));
 
 }
 
@@ -173,7 +173,7 @@ function show_shape_of_ufo(ndx) {
         .innerRadius(50)
         .useViewBoxResizing(false)
         .transitionDuration(1500)
-        .legend(dc.legend().x(0).y(0).itemHeight(16).gap(2));
+        .legend(dc.legend().x(80).y(0).itemHeight(16).gap(2));
 
 
 
@@ -277,7 +277,7 @@ function show_country_year(ndx) {
                 .group(BrazilSightingsByYear, 'Brazil'),
             dc.lineChart(compositeChart)
                 .dashStyle([4,])
-                .colors('pink')
+                .colors('indigo')
                 .group(TotalSightingByYear, 'Total')
         ])
         .brushOn(false)
@@ -293,19 +293,18 @@ function show_ufo_shape(ndx) {
     var dim = ndx.dimension(dc.pluck('state'));
     var group = dim.group();
 
-    dc.barChart("#state-barchart")
-    .width(800)
-    .height(400)
-    .margins({ top: 10, right: 50, bottom: 40, left: 50 })
+    
+
+    dc.pieChart("#state-barchart")
     .dimension(dim)
     .group(group)
+    .height(300)
+    .radius(400)
+    .innerRadius(50)
+    .useViewBoxResizing(false)
     .transitionDuration(1500)
-    .x(d3.scale.ordinal())
-    .xUnits(dc.units.ordinal)
-    .elasticY(true)
-    .xAxisLabel("State")
-    .yAxisLabel("Total")
-    .yAxis().ticks(5);
+    .legend(dc.legend().x(80).y(0).itemHeight(16).gap(2));
+
 }
 
 /**
@@ -388,7 +387,7 @@ function show_stacked_country(ndx) {
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Country")
         .yAxisLabel("Shape")
-        .legend(dc.legend().x(420).y(0).itemHeight(10).gap(5));
+        .legend(dc.legend().x(250).y(0).itemHeight(10).gap(5));
 
 }
 
