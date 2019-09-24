@@ -23,6 +23,20 @@ p {
 
 #fact {
     color: black;
+    text-align: center;
+}
+
+.title {
+    margin: auto;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.introduction {
+    text-align: center;
+    padding-top: 1rem;
 }
 
 #map { 
@@ -124,7 +138,7 @@ top: 0;
 left: 0;
 height: 100vh;
 z-index: 999;
-background: url('static/images/forest.jpg');
+background: url('static/images/forest.png');
 opacity: .8;
 color: #fff;
 transition: all 0.3s;
