@@ -53,7 +53,7 @@ p {
 
 
 #prev, #next {
-    background-color: #C0C0C0;
+    background-color: #ffc107;
 }
 
 /*---- BACK-TO-TOP  ----*/
@@ -167,7 +167,7 @@ a:focus {
 }
 
 #dismiss:hover {
-    background: orange;
+    background: #ffc107;
     color: #000000;
 }
 
@@ -190,7 +190,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: orange;
+    background: #ffc107;
     font-family: 'B612';
     font-weight: 700;
     color: #000000;
