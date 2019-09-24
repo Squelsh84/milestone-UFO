@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=B612+Mono:400,700|B612:400,700&display=swap');
 
-body {
-    
-}
 
 h3, h4, h5, h6, a, span, body  {
     font-family: 'B612', serif;
@@ -22,10 +19,12 @@ p {
 }
 
 #fact {
-    color: black;
+    color: #000000;
     text-align: center;
 }
 
+
+/*          */
 .title {
     margin: auto;
 }
@@ -45,29 +44,22 @@ p {
   border: 5px;
  }
 
- .box {
-  background-image: linear-gradient(to bottom right, #1f787c, #1f787c);
-  padding: 0.7em;
-  height: 405px;
-  text-align: center;
-  font-weight: bold;
-  width: 550px;
-  margin: 15px 1em 15px 1em;
-  border-radius: 5px
-}
+ /* Added because screen was streching when on mobile --*/
 
-.title {
-    text-align: center;
-}
+.table-responsive {
+    overflow-x: inherit;
+     }
 
 
 #prev, #next {
-    background-color: grey;
+    background-color: #C0C0C0;
 }
 
-/*Back to top------------------------------------------------------------------*/
+/*---- Back to top ----*/
 
 #back-to-top, #refresh-chart {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: fixed;
     bottom: 30px;
@@ -78,12 +70,16 @@ p {
     padding: 10px 20px;
     border-radius: 5px;
     color: #fff;
+    -webkit-transition: background-color .3s, 
+      opacity .3s, visibility .5s;
+    -o-transition: background-color .3s, 
+      opacity .3s, visibility .5s;
     transition: background-color .3s, 
       opacity .3s, visibility .5s;
   }
   #back-to-top:hover, #refresh-chart {
     cursor: pointer;
-    background-color: darkorange;
+    background-color: #FF8C00;
   }
   #back-to-top.show, #refresh-chart.show {
     opacity: 1;
@@ -99,6 +95,8 @@ a:hover,
 a:focus {
 color: inherit;
 text-decoration: none;
+-webkit-transition: all 0.3s;
+-o-transition: all 0.3s;
 transition: all 0.3s;
 }
 
@@ -108,11 +106,13 @@ background: #fff;
 border: none;
 border-radius: 0;
 margin-bottom: 40px;
-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-btn {
-box-shadow: none;
+-webkit-box-shadow: none;
+        box-shadow: none;
 outline: none !important;
 border: none;
 }
@@ -127,6 +127,8 @@ margin: 40px 0;
 /* --- SIDEBAR STYLE --- */
 
 .wrapper {
+display: -webkit-box;
+display: -ms-flexbox;
 display: flex;
 width: 100%;
 }
@@ -138,9 +140,11 @@ top: 0;
 left: 0;
 height: 100vh;
 z-index: 999;
-background: url('static/images/forest.png');
+background: url('/static/images/forest.png') no-repeat  fixed;
 opacity: .8;
 color: #fff;
+-webkit-transition: all 0.3s;
+-o-transition: all 0.3s;
 transition: all 0.3s;
 }
 
@@ -148,7 +152,6 @@ transition: all 0.3s;
     font-family: 'B612';
     font-weight: 700;
     color: black;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #sidebar.active {
@@ -181,7 +184,9 @@ display: block;
 position: absolute;
 top: 50%;
 right: 20px;
-transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
 }
 
 
@@ -191,6 +196,8 @@ transform: translateY(-50%);
 width: calc(100% - 250px);
 padding: 40px;
 min-height: 100vh;
+-webkit-transition: all 0.3s;
+-o-transition: all 0.3s;
 transition: all 0.3s;
 position: absolute;
 top: 0;
@@ -220,11 +227,7 @@ width: 100%;
     display: none;
 }
 }
-/* Added because screen was streching when on mobile --*/
 
-@media(min-width:320px) and (max-width:640px) {
 
-    #dc-data-table {
-        display: none;
-    }
-}
+
+
