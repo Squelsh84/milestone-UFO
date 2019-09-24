@@ -5,7 +5,7 @@ Please click [here for a live demo of the website.](https://squelsh84.github.io/
 ![Responsive Dashboard](https://github.com/Squelsh84/milestone-UFO/blob/master/static/images/responsive.png)
 
 ## Introduction
-This data dashboard is designed to show the UFO sightings reported around the globe in 1984. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country the UFO was spotted in, we can also see the shape of the UFO that was reported, and some comments made by the people when first reporting it.  
+This data dashboard is designed to show the UFO sightings reported around the globe from 1984. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country the UFO was spotted in, we can also see the shape of the UFO that was reported, and some comments made by the people when first reporting it.  
 
 
 
@@ -59,15 +59,17 @@ As a user, I want:
 ##### Feature 9 - Data Table
 * All the reports from the year can be seen in the data table. Also included are the comments from the people on that day.
 
-##### Feature 10 - Sighting Map
+##### Feature 10 - Leaflet Map
 * This map shows all the sighting in the year on the map. Each spaceship when clicked on shows the city where it was seen. Also, you can zoom ii and out to see.
 
 
 ### Features Left to Implement
 
-*  I would like to map the map more interactive. So when certain information is selected in a chart it also shows on the map.
+*  I would like to make the map more interactive. So when certain information is selected in a chart it also shows on the map.
 
 *  To use all the information from the full report and have it constantly updating.
+
+*  Create rich data based on each country and create more sub-sections.
 
 
 
@@ -128,6 +130,7 @@ As a user, I want:
 
 * When trying to push my sidebar image to Git and setting the relative file path, it turned out the file path was corrupt i.e "static/  images/static/images/sidebar.png". To fix this I had to remove the image and rename it, then push it again to Git. After this is      seemed to work fine.
 
+* My sidebar after testing was not fixing to the side and creating large areas of blank text. To fix this I changed the sidebar to an   overlay sidebar which resolved th issue.
 
 
 
@@ -165,7 +168,7 @@ git clone https://github.com/USERNAME/REPOSITORY
 ### Content
 
 * UFO data from Kaggle: https://www.kaggle.com/camnugent/ufo-sightings-around-the-world
-* Sidebar idea came from: https://bootstrapious.com/p/bootstrap-sidebar
+* * Sidebar was taken and adapted from: https://bootstrapious.com/p/bootstrap-sidebar
 
 ### Media
 
@@ -179,4 +182,6 @@ git clone https://github.com/USERNAME/REPOSITORY
 * Leaflet Map tutorial : https://leafletjs.com/examples.html
 * Inspiration from: https://robsimons1.github.io/global-white-shark-attack-dashboard/ - Rob Simons
 * Stack Overflow for being a fountain of information.
+* Sidebar was taken and adapted from: https://bootstrapious.com/p/bootstrap-sidebar
+* Another big thank you to my mentor Seun Owonikoko who guided me through another project.
 
