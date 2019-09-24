@@ -68,33 +68,33 @@ As a user, I want:
 
 
 ## Technologies used
-•	HTML 
+*	HTML 
 
-•	CSS 
+*	CSS 
 
-• [JavaScript] The dashboard uses Javascript to provide dynamic interactivity, as it is a full-fledged versatile programming language.
+* [JavaScript] The dashboard uses Javascript to provide dynamic interactivity, as it is a full-fledged versatile programming language.
 
-•	[Visual Code Studio](https://code.visualstudio.com/) 
+*	[Visual Code Studio](https://code.visualstudio.com/) 
 
-•	[Bootstrap](https://getbootstrap.com/) for the grid system of the page.
+*	[Bootstrap](https://getbootstrap.com/) for the grid system of the page.
 
-•	[Google Fonts](https://fonts.google.com/) for the fonts.
+*	[Google Fonts](https://fonts.google.com/) for the fonts.
 
-•	[JQuery](https://jquery.com/) to simplify the JavaScript.
+*	[JQuery](https://jquery.com/) to simplify the JavaScript.
 
-•	Crossfilter The graphs and charts on the dashboard are all linked using crossfilter, which manages the data behind the graphs and     charts, allowing interaction with coordinated views and functioning. It synchronises all the charts when used.
+*	Crossfilter The graphs and charts on the dashboard are all linked using crossfilter, which manages the data behind the graphs and     charts, allowing interaction with coordinated views and functioning. It synchronises all the charts when used.
 
-•	DC.js The dashboard uses DC.js for data visualisation and analysis. 
+*	DC.js The dashboard uses DC.js for data visualisation and analysis. 
 
-•	D3.js The D3.js library allows manipulation of elements on the dashboard in the context of the dataset.
+*	D3.js The D3.js library allows manipulation of elements on the dashboard in the context of the dataset.
 
-•	Leaflet.js Used to create the map.
+*	Leaflet.js Used to create the map.
 
-•	Google Chrome developer tools.
+*	Google Chrome developer tools.
 
-•	Bash / Ubuntu to commit my project and to push it to Github.
+*	Bash / Ubuntu to commit my project and to push it to Github.
 
-•	[Git](https://github.com/) for version control and for users to view the deployed version of the website.
+*	[Git](https://github.com/) for version control and for users to view the deployed version of the website.
 
 ## Testing
 
