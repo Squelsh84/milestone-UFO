@@ -118,13 +118,15 @@ As a user, I want:
 
 ### Issues when Testing
 
-* My original plan was to use the full dataset for this project. When I began to load the data it became obvious that it wasn't going     to work. The page was taking a long time to load and most times it crashed. It was giving crossfilter errors because it was timing out. After some time I scrapped the dataset and decided to take the year I was born from it.
+* My original plan was to use the full dataset for this project. When I began to load the data it became obvious that it wasn't going   to work. The page was taking a long time to load and most times it crashed. It was giving crossfilter errors because it was           timing out. After some time I scrapped the dataset and decided to take the year I was born from it.
 
 * Maps was not picking from the csv file. I then created a separate geojson file and create a var to pluck from this.
 
 * The charts were leaking out over the page and causing stretching. I decided to put them inside cards as it helped to keep them from   doing this and also make the UI look better.
 
-* Data table was too large for smaller screens. To fix this I created a media queries to not display on smaller screens.
+* Data table was too large for smaller screens. To fix this I made it scrollable on smaller screens which doesn't affect the screen     size .
+
+* When trying to push my sidebar image to Git and setting the relative file path, it turned out the file path was corrupt i.e "static/  images/static/images/sidebar.png". To fix this I had to remove the image and rename it, then push it again to Git. After this is      seemed to work fine.
 
 
 
