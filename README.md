@@ -5,18 +5,18 @@ Please click [here for a live demo of the website.](https://squelsh84.github.io/
 ![Responsive Dashboard](https://github.com/Squelsh84/milestone-UFO/blob/master/static/images/responsive.png)
 
 ## Introduction
-This data dashboard is designed to show the UFO sightings reported around the globe in 1984. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country the UFO was spotted in, we can also see the shape of the UFO that was reported and some comments made by the people when first reporting it.  
+This data dashboard is designed to show the UFO sightings reported around the globe in 1984. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country the UFO was spotted in, we can also see the shape of the UFO that was reported, and some comments made by the people when first reporting it.  
 
 
 
 ## UX
 
 ### What is it?
-It's a clean Single Page Application dashboard that informs the users of ufo sightings around the globe using various charts, pie-charts, composite charts and stacked barcharts. 
+It's a clean Single Page Application dashboard that informs the users of UFO sightings around the globe using various charts, pie-charts, composite charts and stacked bar charts. 
 
 
 ### Who is the target audience?
-This Dashboard is for people who are curious about all the extraterrestrial activities that have happened around the globe. Whether you're skeptical about it or a true believer in UFO's it's always something that draws up conversation amongst people. 
+This Dashboard is for people who are curious about all the extra-terrestrial  activities that have happened around the globe. Whether you're sceptical about it or a true believer in UFO's it's always something that draws up conversation amongst people. 
 
 ### User stories
 As a user, I want:
@@ -36,10 +36,10 @@ As a user, I want:
 ### Existing features
 
 ##### Feature 1 - Sidebar
-  The sidebar contains trivia about the most famous ufo sighting. It is collapsable with a button placed in the top Navbar.
+  The sidebar contains trivia about the most famous UFO sighting. It is collapsible with a button placed in the top Navbar.
 
 ##### Feature 2 - NavBar
-  Navbar contains a reset chart button  to help the user with their experience. Also a button is in place to open and close the         sidebar.
+  Navbar contains a reset chart button  to help the user with their experience. Also, a button is in place to open and close the         sidebar.
 
 ##### Feature 3 - Refresh Chart Button
   This allows the user to Refresh the charts when called upon.
@@ -51,16 +51,16 @@ As a user, I want:
  These allow the user to choose specific information across the spa dashboard.
 
 ##### Feature 7 - Composite Chart
- The composite chart displays the number of sighting along a timeline. It gives a great visual display to what months and countries    more  UFO's have been spotted and where there has been the most activity.
+ The composite chart displays the number of sighting along a timeline. It gives a great visual display to what months and countries    more UFO's have been spotted and where there has been the most activity.
 
 ##### Feature 8 - Stacked bar chart
- The stacked Barchart shows the user the contry and types of sighting stcked on top of each other.
+ The stacked Barchart shows the user the countries and types of sighting stacked on top of each other.
 
 ##### Feature 9 - Data Table
-* All the reports from the year can be seen in the datatable. Also inclueded are the comments from the people on that day.
+* All the reports from the year can be seen in the data table. Also included are the comments from the people on that day.
 
 ##### Feature 10 - Sighting Map
-* This map shows all the sighting in the year on the map. Each spaceship when clicked on shows the city where it was seen. Also you can zoom ii and out to see.
+* This map shows all the sighting in the year on the map. Each spaceship when clicked on shows the city where it was seen. Also, you can zoom ii and out to see.
 
 
 ### Features Left to Implement
@@ -76,7 +76,7 @@ As a user, I want:
 
 *	CSS 
 
-* [JavaScript] The dashboard uses Javascript to provide dynamic interactivity, as it is a full-fledged versatile programming language.
+* [JavaScript] The dashboard uses JavaScript to provide dynamic interactivity, as it is a full-fledged versatile programming language.
 
 *	[Visual Code Studio](https://code.visualstudio.com/) 
 
@@ -106,7 +106,7 @@ As a user, I want:
 
 * Tested refresh chart button to make sure it refreshed the page.
 
-* Tested the sidebar button to ensure it opened and closed. This was domne by testing all different screen sizes.
+* Tested the sidebar button to ensure it opened and closed. This was done by testing all different screen sizes.
 
 * Tested the back to top button to check functionality. This was done by scrolling down and clicking button.
 
@@ -118,13 +118,13 @@ As a user, I want:
 
 ### Issues when Testing
 
-* My original plan was to use the full dataset for this project. When I began to load the dat it became obvious that it wasnt going     to work. The page was taking a long time to load and most times it crashed. It was giving crossfilter errors because it was timing    out. After some time I scrapped the datset and decided to take the year i was born from it.
+* My original plan was to use the full dataset for this project. When I began to load the data it became obvious that it wasn't going     to work. The page was taking a long time to load and most times it crashed. It was giving crossfilter errors because it was timing out. After some time I scrapped the dataset and decided to take the year I was born from it.
 
-* Maps was not picking from the csv file. I then created a seperate geojson file and create a var to pluck from this.
+* Maps was not picking from the csv file. I then created a separate geojson file and create a var to pluck from this.
 
 * The charts were leaking out over the page and causing stretching. I decided to put them inside cards as it helped to keep them from   doing this and also make the UI look better.
 
-* Datatable was too large for smaller screens. To fix this I created a media querie to not display on smaller screens.
+* Data table was too large for smaller screens. To fix this I created a media queries to not display on smaller screens.
 
 
 
