@@ -6,7 +6,7 @@ function makeGraphs(error, scrubData) {
     scrubData.forEach(function (d) {
         d.datetime = new Date(d.datetime);
         d.number = +d.number;
-    })
+    });
 
     var ndx = crossfilter(scrubData);
  
@@ -30,7 +30,7 @@ function makeGraphs(error, scrubData) {
 }
 
 
-// DataTable
+/* DataTable showing all information from .csv file */
 
 function show_data_table(ndx) {
 
@@ -92,7 +92,7 @@ function show_data_table(ndx) {
         update_offset();
         table.redraw();
     });
-    /* Event Listener function that fires when "next" HTML btn is clicked */
+    
 
     $('#prev').on('click', function () {
         ofs -= pag;
@@ -102,17 +102,17 @@ function show_data_table(ndx) {
 
 }
 
-// Country Selector
+/* Country Selector to create dropdown menu */
 function show_country_selector(ndx) {
     var dim = ndx.dimension(dc.pluck('country'));
     var group = dim.group();
 
     dc.selectMenu("#country-selector")
         .dimension(dim)
-        .group(group)
+        .group(group);
 }
 
-// Shape Selector
+/* Shape Selector to create dropdown menu */
 
 function show_shape_selector(ndx) {
     var dim = ndx.dimension(dc.pluck('shape'));
@@ -120,12 +120,12 @@ function show_shape_selector(ndx) {
 
     dc.selectMenu("#shape-selector")
         .dimension(dim)
-        .group(group)
+        .group(group);
 }
 
 
-//Country of Sighting and Amount.
-//pie chart
+/*Country of Sighting and shape of ufo pie charts */
+
 function show_country_sighting(ndx) {
     var dim = ndx.dimension(dc.pluck('country'));
     var group = dim.group();
@@ -136,11 +136,10 @@ function show_country_sighting(ndx) {
         .group(group)
         .height(300)
         .radius(600)
-        .innerRadius(50)
+        .innerRadius(35)
         .useViewBoxResizing(false)
-        .transitionDuration(1500)
+        .transitionDuration(1500);
         
-
 }
 
 // UFO Shape
@@ -155,14 +154,14 @@ function show_shape_of_ufo(ndx) {
         .group(group)
         .height(300)
         .radius(600)
-        .innerRadius(50)
+        .innerRadius(35)
         .useViewBoxResizing(false)
-        .transitionDuration(1500)
+        .transitionDuration(1500);
         
 }
 
 
-// Composite Chart
+/* Composite Chart showing ufo sightings on specific dates */
 function show_country_year(ndx) {
 
     var date_dim = ndx.dimension(function (d) {
@@ -270,9 +269,7 @@ function show_ufo_shape(ndx) {
 
 }
 
-/**
- * Stacked Barchart with countries and Shape of object 
-*/
+/* Stacked Barchart with countries and Shape of object */
 function show_stacked_country(ndx) {
 
     function typeByShape(dimension, shape) {
@@ -313,9 +310,6 @@ function show_stacked_country(ndx) {
     var rectangleBySight = typeByShape(shape_dim, "Rectangle");
     var diamondBySight = typeByShape(shape_dim, "Diamond");
 
-
-
-
     dc.barChart("#stacked-chart")
         .width(500)
         .height(300)
@@ -354,7 +348,6 @@ function show_stacked_country(ndx) {
 
 }
 
-
 /* function to refresh page when Refresh Charts buttons are clicked */
 
 function refreshPage() {
@@ -362,7 +355,7 @@ function refreshPage() {
 }
 
 
-// Sidebar Collapse
+/* Sidebar Collapse */
 
 $(document).ready(function () {
     $("#sidebar").mCustomScrollbar({
@@ -376,7 +369,8 @@ $(document).ready(function () {
     });
 });
 
-// Back to top btn
+/* Back to top btn */
+
 let btn = $('#back-to-top' );
 
 $(window).scroll(() => {if ($(window).scrollTop() > 300) {
@@ -393,7 +387,7 @@ btn.on('click', (e) => {
 
 
 
-// Leaflet Map
+/* Leaflet Map displays all UFOs locations */
 
 var mapOptions = {
     center: [40.4168, -3.7038],
