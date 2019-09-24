@@ -2,7 +2,7 @@
 
 Please click [here for a live demo of the website.](https://squelsh84.github.io/milestone-UFO/).
 
-![Responsive Dashboard]()
+![Responsive Dashboard](https://github.com/Squelsh84/milestone-UFO/blob/master/static/images/responsive.png)
 
 ## Introduction
 This data dashboard is designed to show the UFO sightings reported around the globe in 1984. Most of the reported sightings have come from the United States but UFO's have also been spotted across the globe. Along with the country the UFO was spotted in, we can also see the shape of the UFO that was reported and some comments made by the people when first reporting it.  
