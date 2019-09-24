@@ -124,7 +124,7 @@ top: 0;
 left: 0;
 height: 100vh;
 z-index: 999;
-background: url('/images/sidebar.jpg');
+background: url('../../static/images/sidebar.jpg');
 opacity: .8;
 color: #fff;
 transition: all 0.3s;
@@ -145,7 +145,6 @@ margin-left: -250px;
 padding: 20px;
 background: orange;
 opacity: .5;
-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #sidebar ul li.active>a,
