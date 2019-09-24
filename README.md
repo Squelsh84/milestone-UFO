@@ -112,6 +112,18 @@ As a user, I want:
 
 *	JSHint was used to validate JavaScript.
 
+### Issues when Testing
+
+* My original plan was to use the full dataset for this project. When I began to load the dat it became obvious that it wasnt going     to work. The page was taking a long time to load and most times it crashed. It was giving crossfilter errors because it was timing    out. After some time I scrapped the datset and decided to take the year i was born from it.
+
+* Maps was not picking from the csv file. I then created a seperate geojson file and create a var to pluck from this.
+
+* The charts were leaking out over the page and causing stretching. I decided to put them inside cards as it helped to keep them from   doing this and also make the UI look better.
+
+* Datatable was too large for smaller screens. To fix this I created a media querie to not display on smaller screens.
+
+
+
 
 ## Deployment
 
