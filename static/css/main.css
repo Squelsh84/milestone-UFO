@@ -77,10 +77,12 @@ p {
     transition: background-color .3s, 
       opacity .3s, visibility .5s;
   }
+
+
   #back-to-top:hover, #refresh-chart {
     cursor: pointer;
-    background-color: #FF8C00;
   }
+
   #back-to-top.show, #refresh-chart.show {
     opacity: 1;
     visibility: visible;
@@ -151,7 +153,7 @@ transition: all 0.3s;
 .sidebar-logo {
     font-family: 'B612';
     font-weight: 700;
-    color: black;
+    color: #000000;
 }
 
 #sidebar.active {
@@ -160,7 +162,7 @@ margin-left: -250px;
 
 #sidebar .sidebar-header {
 padding: 20px;
-background: orange;
+background: #FFA500;
 opacity: .5;
 }
 
