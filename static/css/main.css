@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=B612+Mono:400,700|B612:400,700&display=swap');
 
-
+body {
+    
+}
 
 h3, h4, h5, h6, a, span, body  {
     font-family: 'B612', serif;
-    font-family: 'B612 Mono', sans-serif;
-    
+    font-family: 'B612 Mono', sans-serif;   
 }
 
 h2 {
@@ -109,9 +110,7 @@ border-bottom: 1px dashed #ddd;
 margin: 40px 0;
 }
 
-/* ---------------------------------------------------
-SIDEBAR STYLE
------------------------------------------------------ */
+/* --- SIDEBAR STYLE --- */
 
 .wrapper {
 display: flex;
@@ -135,6 +134,7 @@ transition: all 0.3s;
     font-family: 'B612';
     font-weight: 700;
     color: black;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #sidebar.active {
@@ -145,33 +145,18 @@ margin-left: -250px;
 padding: 20px;
 background: orange;
 opacity: .5;
-}
-
-#sidebar ul.components {
-padding: 20px 0;
-border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-color: #fff;
-padding: 10px;
-}
-
-#sidebar ul li a {
-padding: 10px;
-font-size: 1.1em;
-display: block;
-}
-
-#sidebar ul li a:hover {
-color: #7386D5;
-background: #fff;
+box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
 color: #fff;
 background: #6d7fcc;
+}
+
+.sidebar-top {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 a[data-toggle="collapse"] {
@@ -186,38 +171,8 @@ right: 20px;
 transform: translateY(-50%);
 }
 
-ul ul a {
-font-size: 0.9em !important;
-padding-left: 30px !important;
-background: #6d7fcc;
-}
 
-ul.CTAs {
-padding: 20px;
-}
-
-ul.CTAs a {
-text-align: center;
-font-size: 0.9em !important;
-display: block;
-border-radius: 5px;
-margin-bottom: 5px;
-}
-
-a.download {
-background: #fff;
-color: #7386D5;
-}
-
-a.article,
-a.article:hover {
-background: #6d7fcc !important;
-color: #fff !important;
-}
-
-/* ---------------------------------------------------
-CONTENT STYLE
------------------------------------------------------ */
+/* ---CONTENT STYLE --- */
 
 #content {
 width: calc(100% - 250px);
@@ -233,9 +188,7 @@ right: 0;
 width: 100%;
 }
 
-/* ---------------------------------------------------
-MEDIAQUERIES
------------------------------------------------------ */
+/*-------- Media Queries -------*/
 
 @media (max-width: 768px) {
 #sidebar {
@@ -254,8 +207,7 @@ MEDIAQUERIES
     display: none;
 }
 }
-
-/*-------- Media Queries -------*/
+/* Added because screen was streching when on mobile --*/
 
 @media(min-width:320px) and (max-width:640px) {
 
@@ -263,9 +215,3 @@ MEDIAQUERIES
         display: none;
     }
 }
-
-
-
-
-
-
