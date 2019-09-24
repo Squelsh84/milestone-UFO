@@ -10,6 +10,7 @@
   <!-- favicon link to favicon-32x32.png displayed in browser tab -->
   <link rel="icon" type="image/png" href="static/images/favicon.png" />
 
+  
   <link rel="stylesheet" href="static/css/main.css" type="text/css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -30,169 +31,173 @@
   <!-- Button to Refresh Chart -->
   <button id="refresh-chart" onClick="refreshPage()">Refresh</button>
 
-  
+
+  <!-- Sidebar  -->
+
+  <div class="wrapper">
+
+
     <!-- Sidebar  -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h2 class="sidebar-logo">1984, UFO DASHBOARD</h2>
+      </div>
+      <h3 class="text-center sidebar-top">Did You Know!</h3>
+      <p id="fact">Probably the best-known sighting of a UFO happened in Roswell, New Mexico, in 1947. In the summer
+        of 1947, a local farmer found piles of strange debris in a pasture.<br> Officials from the nearby Roswell Army Air Force Base claimed the debris was simply wreckage from a crashed weather balloon.
+    </nav>
+  </div>
 
-    <div class="wrapper">
-      <!-- Sidebar  -->
-      <nav id="sidebar">
-        <div class="sidebar-header">
-          <h2 class="sidebar-logo">1984, UFO DASHBOARD</h2>
-        </div>
-        <h3 class="text-center sidebar-top">Did You Know!</h3>
-        <p id="fact">Probably the best-known sighting of a UFO happened in Roswell, New Mexico, in 1947. In the summer
-          of 1947, a local farmer found piles of strange debris in a pasture.<br>Officials from the nearby Roswell Army
-          Air Force Base claimed the debris was simply wreckage from a crashed weather balloon.<br> Eventually, in the
-          1990s, a government report revealed that the crashed object wasn’t a weather balloon, but was actually a
-          surveillance device that was part of a top-secret operation called Project Mogul that often employed
-          balloons.<br>It was definitely from planet Earth!</p>
-      </nav>
-    </div>
 
-    <!-- Page Content Begins -->
-    <div id="content">
+  <!-- Page Content Begins -->
+  <div id="content">
 
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed">
-        <div class="container-fluid">
-          <button type="button" id="sidebarCollapse" class="btn btn-warning">
-            <i class="fas fa-align-left"></i>
-            <span></span>
-          </button>
-          <button type="button"  class="btn btn-warning ml-auto" onClick="refreshPage()">
-            <span>Refresh Charts</span>
-          </button>
-        </div>
-      </nav>
+    <!-- Navbar Begins -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed">
+      <div class="container-fluid">
+        <button type="button" id="sidebarCollapse" class="btn btn-warning">
+          <i class="fas fa-align-left"></i>
+          <span></span>
+        </button>
+        <button type="button" class="btn btn-warning ml-auto" onClick="refreshPage()">
+          <span>Refresh Charts</span>
+        </button>
+      </div>
+    </nav>
 
-   <!-- Page Information Begins -->
+    <!-- Navbar Ends -->
+    <!-- Page Information Begins -->
     <div class="container">
-        <div class="row">
-                <div class="title">
-                  <h1 class="title title-head display-3 text-justify-center">UFO Sightings, 1984</h1>
-            </div>
+      <div class="row">
+        <div class="title">
+          <h1 class="title title-head display-3">UFO Sightings, 1984</h1>
         </div>
-    </div>
-  
-    <div class="container">
-        <div class="row">
-            <div class=" introduction col-sm-12 col-md-12 col-lg-12">
-                <p>What is it about unidentified flying objects and extraterrestrial visitors that holds such allure? Surveys consistently show that about a third of all Americans think alien spaceships are real, and that as much as 10 percent of the population have seen such spaceships. Eyewitnesses abound, but the physical evidence is flimsy.<br> As our technology improves and the race to find life on other planets, how long is it before we make contact with other life forms?<p>The Information below is just a years worth of reports from around the globe from 1984. Over 80,000 reports have been made in just the last 100 years.</p>
-            </div>
-        </div>
+      </div>
     </div>
 
-      <!-- Page Information Ends -->
+    <div class="container">
+      <div class="row">
+        <div class=" introduction col-sm-12 col-md-12 col-lg-12">
+          <p>What is it about unidentified flying objects and extraterrestrial visitors that holds such allure? Surveys
+            consistently show that about a third of all Americans think alien spaceships are real, and that as much as
+            10 percent of the population have seen such spaceships. Eyewitnesses abound, but the physical evidence is
+            flimsy.<br> As our technology improves and the race to find life on other planets, how long is it before we
+            make contact with other life forms?<p>The Information below is just a years worth of reports from around the
+              globe from 1984. Over 80,000 reports have been made in just the last 100 years.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Information Ends -->
+
+    <div class="line"></div>
+
+
+    <!-- Pie Charts to represent the Countries and Shapes  -->
+
+    <div class="row ufo-chart">
+      <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Countries Of Sightings</h2>
+            <p class="card-info">Click To See More Countries</p>
+            <div id="country-selector"></div>
+          </div>
+          <div class="card-body">
+            <div id="country"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Shape Of UFO</h2>
+            <p class="card-info">Click To See All The Shapes Reported</p>
+            <div id="shape-selector"></div>
+          </div>
+          <div class="card-body">
+            <div id="shape"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie Charts End -->
+
+      <div class="line"></div>
+
+      <!-- Composite Chart Begins -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header ">
+                <h2 class="card-title text-align-center">Timeline Over A Year of Sightings In All Countries</h2>
+                <p class="card-info">Click And Scroll On Interactive Chart</p>
+              </div>
+              <div class="card-body ">
+                <div id="composite-chart"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Composite Chart Ends -->
 
       <div class="line"></div>
 
 
-      <!-- Pie Charts to represent the Countries and Shapes  -->
+      <!-- Stacked Barchart Begins -->
 
-      <div class="row ufo-chart">
-        <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
-          <div class="card">
-            <div class="card-header">
-              <h2 class="card-title">Countries Of Sightings</h2>
-              <p class="card-info">Click To See More Countries</p>
-              <div id="country-selector"></div>
-            </div>
-            <div class="card-body">
-              <div id="country"></div>
-            </div>
-          </div>
-        </div>
-        <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
-          <div class="card">
-            <div class="card-header">
-              <h2 class="card-title">Shape Of UFO</h2>
-              <p class="card-info">Click To See All The Shapes Reported</p>
-              <div id="shape-selector"></div>
-            </div>
-            <div class="card-body">
-              <div id="shape"></div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Pie Charts End -->
-
-        <div class="line"></div>
-
-        <!-- Composite Chart Begins -->
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card ">
-                <div class="card-header ">
-                  <h2 class="card-title text-align-center">Timeline Over A Year of Sightings In All Countries</h2>
-                  <p class="card-info">Click And Scroll On Interactive Chart</p>
-                </div>
-                <div class="card-body ">
-                  <div id="composite-chart"></div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header ">
+                <h2 class="card-title">Breakdown Of Each Countries Sightings </h2>
+                <p class="card-info">Each Color Represents The Total Shapes Reported</p>
+              </div>
+              <div class="card-body ">
+                <div id="stacked-chart"></div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Composite Chart Ends -->
+      <!-- Stacked Barchart Ends -->
 
-        <div class="line"></div>
+      <div class="line"></div>
 
-
-        <!-- Stacked Barchart Begins -->
-
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card ">
-                <div class="card-header ">
-                  <h2 class="card-title">Breakdown Of Each Countries Sightings </h2>
-                  <p class="card-info">Each Color Represents The Total Shapes Reported</p>
-                </div>
-                <div class="card-body ">
-                  <div id="stacked-chart"></div>
-                </div>
+      <!-- Data Table Begins -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header ">
+                <h2 class="card-title">Table Showing Countries In Order Of Date:</h2>
+                <p class="card-info">Check Out The Comment Section</p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Stacked Barchart Ends -->
-
-        <div class="line"></div>
-
-        <!-- Data Table Begins -->
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card ">
-                <div class="card-header ">
-                  <h2 class="card-title">Table Showing Countries In Order Of Date:</h2>
-                  <p class="card-info">Check Out The Comment Section</p>
-                </div>
-                <div class="card-body ">
-                  <table id="dc-data-table" class="table table-hover table-bordered">
-                    <thead>
-                      <tr class="header">
-                        <th>Date Time</th>
-                        <th>City</th>
-                        <th>Shape</th>
-                        <th>Comments</th>
-                      </tr>
-                    </thead>
-                  </table>
-                  <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                      <div id="paging">
-                        Showing <span id="begin"></span>-<span id="end"></span> of
-                        <span id="size"></span> <span id="totalsize"></span>
-                        <input id="prev" class="btn-primary active" type="button" value="Prev" />
-                        <input id="next" class="btn-primary active" type="button" value="Next" />
-                      </div>
+              <div class="card-body table-responsive ">
+                <table id="dc-data-table" class="table table-hover table-bordered">
+                  <thead>
+                    <tr class="header">
+                      <th>Date Time</th>
+                      <th>City</th>
+                      <th>Shape</th>
+                      <th>Comments</th>
+                    </tr>
+                  </thead>
+                </table>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div id="paging">
+                      Showing <span id="begin"></span>-<span id="end"></span> of
+                      <span id="size"></span> <span id="totalsize"></span>
+                      <input id="prev" class="btn-primary active" type="button" value="Prev" />
+                      <input id="next" class="btn-primary active" type="button" value="Next" />
                     </div>
                   </div>
                 </div>
@@ -200,56 +205,58 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Data Table Ends-->
+      <!-- Data Table Ends-->
 
-        <div class="line"></div>
+      <div class="line"></div>
 
-        <!-- World Map Begins -->
+      <!-- World Map Begins -->
 
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card ">
-                <div class="card-header ">
-                  <h2 class="card-title">World Map Showing All Reports Over the Year</h2>
-                  <p class="card-info">Click A Spaceship To See Where It Was</p>
-                </div>
-                <div class="card-body ">
-                  <div id="map"></div>
-                </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header ">
+                <h2 class="card-title">World Map Showing All Reports Over the Year</h2>
+                <p class="card-info">Click A Spaceship To See Where It Was</p>
+              </div>
+              <div class="card-body ">
+                <div id="map"></div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- World Map Ends -->
-
       </div>
+
+      <!-- World Map Ends -->
+
     </div>
+  </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="static/js/d3.min.js"></script>
-    <script src="static/js/crossfilter.min.js"></script>
-    <script src="static/js/dc.min.js"></script>
-    <script src="static/js/queue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="static/js/d3.min.js"></script>
+  <script src="static/js/crossfilter.min.js"></script>
+  <script src="static/js/dc.min.js"></script>
+  <script src="static/js/queue.min.js"></script>
 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="data/scrub-geojson.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+  <script src="data/scrub-geojson.js"></script>
 
-    <script src="static/js/graph.js"></script>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 
-    <!-- Font Awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+  <script src="static/js/graph.js"></script>
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 
 </body>
 
