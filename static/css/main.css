@@ -2,7 +2,7 @@
 
 
 
-h1, h3, h4, h5, h6, a, span, body  {
+h3, h4, h5, h6, a, span, body  {
     font-family: 'B612', serif;
     font-family: 'B612 Mono', sans-serif;
     
@@ -41,7 +41,9 @@ p {
   border-radius: 5px
 }
 
-
+.title {
+    text-align: center;
+}
 
 
 #prev, #next {
