@@ -106,10 +106,7 @@ As a user, I want:
 
 * Tested the back to top button to check functionality. This was done by scrolling down and clicking button.
 
-* 
-
-
-
+* Map zoom and information tested. Tested by zooming in and out and click on each individual icon.
 
 * Used [W3c validator](https://validator.w3.org/) to validate both HTML and CSS. I copied my code and pasted it into the validator to   check for errors and warnings.
 
