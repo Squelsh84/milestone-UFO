@@ -26,36 +26,40 @@ As a user, I want:
 4.	To enjoy it.
 5.  To see what country has the most reports.
 
+### Wireframe
+
+- [Link to my Wireframe on Figma](https://www.figma.com/file/U8lt7zRtAWquIT0xnsZEnb/UFO-Project?node-id=0%3A1)
+	- I decided to use figma to create my wireframe because it gave me a real visual of what I wanted to implement. It took some time as I found it challenging but was worth it.
 
 ## Features
 
 ### Existing features
 
-##### Sidebar
-*  The sidebar contains trivia about the most famous ufo sighting. It is collapsable with a button placed in the top Navbar.
+##### Feature 1 - Sidebar
+  The sidebar contains trivia about the most famous ufo sighting. It is collapsable with a button placed in the top Navbar.
 
-#####  NavBar
-*  Navbar contains a reset chart button  to help the user with their experience. Also a button is in place to open and close the         sidebar.
+##### Feature 2 - NavBar
+  Navbar contains a reset chart button  to help the user with their experience. Also a button is in place to open and close the         sidebar.
 
-##### Refresh Chart Button
-*  This allows the user to Refresh the charts when called upon.
+##### Feature 3 - Refresh Chart Button
+  This allows the user to Refresh the charts when called upon.
 
-#####  Pie charts
-* This pie charts displays the countries and the shapes of the reported sightings. 
+##### Feature 4 - Pie charts
+ This pie charts displays the countries and the shapes of the reported sightings. 
 
-##### Dropdown selectors
-* These allow the user to choose specific information across the spa dashboard.
+##### Feature 6 -Dropdown selectors
+ These allow the user to choose specific information across the spa dashboard.
 
-##### Composite Chart
-* The composite chart displays the number of sighting along a timeline. It gives a great visual display to what months and countries    more  UFO's have been spotted and where there has been the most activity.
+##### Feature 7 - Composite Chart
+ The composite chart displays the number of sighting along a timeline. It gives a great visual display to what months and countries    more  UFO's have been spotted and where there has been the most activity.
 
-##### Stacked bar chart
-* The stacked Barchart shows the user the contry and types of sighting stcked on top of each other.
+##### Feature 8 - Stacked bar chart
+ The stacked Barchart shows the user the contry and types of sighting stcked on top of each other.
 
-##### Data Table
+##### Feature 9 - Data Table
 * All the reports from the year can be seen in the datatable. Also inclueded are the comments from the people on that day.
 
-##### Sighting Map
+##### Feature 10 - Sighting Map
 * This map shows all the sighting in the year on the map. Each spaceship when clicked on shows the city where it was seen. Also you can zoom ii and out to see.
 
 
@@ -154,7 +158,7 @@ git clone https://github.com/USERNAME/REPOSITORY
 ````
 - Press Enter to create your local clone.
 
-## Creditsgit 
+## Credits 
 
 ### Content
 
