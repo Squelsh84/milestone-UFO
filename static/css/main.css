@@ -140,7 +140,7 @@ top: 0;
 left: 0;
 height: 100vh;
 z-index: 999;
-background: url('/static/images/forest.png') no-repeat  fixed;
+background: url('../images/forest.png') no-repeat  fixed;
 opacity: .8;
 color: #fff;
 -webkit-transition: all 0.3s;
