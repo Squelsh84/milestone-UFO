@@ -9,11 +9,8 @@ function makeGraphs(error, scrubData) {
     })
 
     var ndx = crossfilter(scrubData);
-
-    
+ 
     show_data_table(ndx);
-
-    show_date_selector(ndx);
 
     show_country_selector(ndx);
 
@@ -103,17 +100,6 @@ function show_data_table(ndx) {
         table.redraw();
     });
 
-}
-
-// Date Selector
-
-function show_date_selector(ndx) {
-    var dim = ndx.dimension(dc.pluck('datetime'));
-    var group = dim.group();
-
-    dc.selectMenu("#date-selector")
-        .dimension(dim)
-        .group(group)
 }
 
 // Country Selector
@@ -363,7 +349,7 @@ function show_stacked_country(ndx) {
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Country")
-        .yAxisLabel("Shape")
+        .yAxisLabel("")
         .legend(dc.legend().x(250).y(0).itemHeight(10).gap(5));
 
 }
@@ -379,11 +365,16 @@ function refreshPage() {
 // Sidebar Collapse
 
 $(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
     $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 });
-
 
 // Back to top btn
 let btn = $('#back-to-top' );
