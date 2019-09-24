@@ -154,7 +154,7 @@ git clone https://github.com/USERNAME/REPOSITORY
 ````
 - Press Enter to create your local clone.
 
-## Credits
+## Creditsgit 
 
 ### Content
 
