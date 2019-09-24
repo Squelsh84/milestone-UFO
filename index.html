@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>UFO</title>
+  <title>UFO Dashboard 1984</title>
 
   <!-- favicon link to favicon-32x32.png displayed in browser tab -->
   <link rel="icon" type="image/png" href="static/images/favicon.png" />
@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="static/css/main.css" type="text/css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
+
   <link rel="stylesheet" href="static/css/dc.min.css" type="text/css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -25,32 +25,42 @@
 
 <body>
 
-  <!--- Button to scroll back up the page --->
+  <!-- Button to scroll back up the page -->
   <button class="btn-warning" id="back-to-top">TOP</button>
 
-  <!--- Button to Refresh Chart --->
+  <!-- Button to Refresh Chart -->
   <button id="refresh-chart" onClick="refreshPage()">Refresh</button>
 
-  <!-- Navbar-->
-  <div class="wrapper">
+  
     <!-- Sidebar  -->
-    <nav id="sidebar">
-      <div class="sidebar-header">
-        <h3>UFO DASHBOARD</h3>
-        <strong>UFO</strong>
-      </div>
-    </nav>
 
-    <!-- Page Content  -->
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <h2 class="sidebar-logo">UFO DASHBOARD</h2>
+        </div>
+        <h3 class="text-center">Did You Know!</h3>
+        <p id="fact">Probably the best-known sighting of a UFO happened in Roswell, New Mexico, in 1947. In the summer
+          of 1947, a local farmer found piles of strange debris in a pasture.<br>Officials from the nearby Roswell Army
+          Air Force Base claimed the debris was simply wreckage from a crashed weather balloon.<br> Eventually, in the
+          1990s, a government report revealed that the crashed object wasn’t a weather balloon, but was actually a
+          surveillance device that was part of a top-secret operation called Project Mogul that often employed
+          balloons.<br>It was definitely from planet Earth!</p>
+      </nav>
+    </div>
+
+    <!-- Page Content Begins -->
     <div id="content">
 
+      <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light fixed">
         <div class="container-fluid">
-          <button type="button" id="sidebarCollapse" class="btn btn-info">
+          <button type="button" id="sidebarCollapse" class="btn btn-warning">
             <i class="fas fa-align-left"></i>
-            <span>Sidebar</span>
+            <span></span>
           </button>
-          <button type="button" id="sidebarCollapse" class="btn btn-warning ml-auto" onClick="refreshPage()">
+          <button type="button"  class="btn btn-warning ml-auto" onClick="refreshPage()">
             <span>Refresh Charts</span>
           </button>
         </div>
@@ -58,11 +68,14 @@
 
       <div class="line"></div>
 
+
+      <!-- Pie Charts to represent the Countries and Shapes  -->
+
       <div class="row ufo-chart">
         <div class="pie col-xs-12 col-lg-6 col-md-12 col-sm-12 text-center">
           <div class="card">
             <div class="card-header">
-              <h2 class="card-title">Country Of Sightings</h2>
+              <h2 class="card-title">Countries Of Sightings</h2>
               <p class="card-info">Click To See More Countries</p>
               <div id="country-selector"></div>
             </div>
@@ -84,7 +97,11 @@
           </div>
         </div>
 
+        <!-- Pie Charts End -->
+
         <div class="line"></div>
+
+        <!-- Composite Chart Begins -->
 
         <div class="container">
           <div class="row">
@@ -93,7 +110,6 @@
                 <div class="card-header ">
                   <h2 class="card-title">Timeline Over A Year of Sightings In All Countries</h2>
                   <p class="card-info">Click And Scroll On Interactive Chart</p>
-                  <div id="date-selector"></div>
                 </div>
                 <div class="card-body ">
                   <div id="composite-chart"></div>
@@ -103,9 +119,12 @@
           </div>
         </div>
 
+        <!-- Composite Chart Ends -->
 
         <div class="line"></div>
 
+
+        <!-- Stacked Barchart Begins -->
 
 
         <div class="container">
@@ -113,8 +132,8 @@
             <div class="col-md-12">
               <div class="card ">
                 <div class="card-header ">
-                  <h2 class="card-title"></h2>
-                  <p class="card-info">Each Color Represents The Shape Reported</p>
+                  <h2 class="card-title">Breakdown Of Each Countries Sightings </h2>
+                  <p class="card-info">Each Color Represents The Total Shapes Reported</p>
                 </div>
                 <div class="card-body ">
                   <div id="stacked-chart"></div>
@@ -124,10 +143,11 @@
           </div>
         </div>
 
+        <!-- Stacked Barchart Ends -->
 
         <div class="line"></div>
 
-
+        <!-- Data Table Begins -->
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
@@ -163,10 +183,11 @@
           </div>
         </div>
 
+        <!-- Data Table Ends-->
 
         <div class="line"></div>
 
-
+        <!-- World Map Begins -->
 
         <div class="container-fluid">
           <div class="row">
@@ -184,31 +205,35 @@
           </div>
         </div>
 
+        <!-- World Map Ends -->
+
       </div>
+    </div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="static/js/d3.min.js"></script>
+    <script src="static/js/crossfilter.min.js"></script>
+    <script src="static/js/dc.min.js"></script>
+    <script src="static/js/queue.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script type="text/javascript" src="static/js/d3.min.js"></script>
-      <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
-      <script type="text/javascript" src="static/js/dc.min.js"></script>
-      <script type="text/javascript" src="static/js/queue.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="data/scrub-geojson.js"></script>
 
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 
-      <script type="text/javascript" src="data/scrub-geojson.js"></script>
+    <script src="static/js/graph.js"></script>
 
-      <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 
-      <script type="text/javascript" src="static/js/graph.js"></script>
-
-      <!-- Font Awesome -->
-      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
-      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 </body>
 
 </html>
