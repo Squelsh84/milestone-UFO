@@ -124,7 +124,7 @@ top: 0;
 left: 0;
 height: 100vh;
 z-index: 999;
-background: url('/static/images/sidebar.jpg');
+background: url('/milestone-UFO/static/images/sidebar.jpg');
 opacity: .8;
 color: #fff;
 transition: all 0.3s;
