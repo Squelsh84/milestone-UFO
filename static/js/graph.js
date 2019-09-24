@@ -142,8 +142,8 @@ function show_country_sighting(ndx) {
         
 }
 
-// UFO Shape
-//pie chart
+/* UFO Pie chart */
+
 function show_shape_of_ufo(ndx) {
     var dim = ndx.dimension(dc.pluck('shape'));
     var group = dim.group();
