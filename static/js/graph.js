@@ -401,7 +401,7 @@ var mapOptions = {
     maxBoundsViscosity: 0.5,
 };
 
-var map = L.map('map', mapOptions)
+var map = L.map('map', mapOptions);
 
 
 L.tileLayer('https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=wIh6HMrA9Fl35sbRhW6D', {
@@ -423,7 +423,7 @@ var sightings = L.geoJson(myGeojsonData, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: myIcon
-        })
+        });
     },
     onEachFeature: onEachFeature
 }).addTo(map);
